@@ -1,0 +1,34 @@
+{
+  "name": "bds-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/hecta.vn/crawler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/hecta.vn/crawler/issues"
+  },
+  "homepage": "https://gitlab.com/hecta.vn/crawler#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "config": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "crawler": "^1.2.0",
+    "express": "^4.16.3",
+    "js-yaml": "^3.12.0",
+    "log4js": "^0.6.38",
+    "mkdir": "0.0.2",
+    "mongoose": "^5.2.13",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "require-all": "^3.0.0"
+  }
+}
