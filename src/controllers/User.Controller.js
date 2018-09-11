@@ -1,7 +1,7 @@
 const models = require('../models');
 const UserModel = models['UserModel'];
 
-module.exports = class DemoController {
+module.exports = class UserController {
   constructor(logger) {
     this.logger = logger;
 
@@ -10,9 +10,13 @@ module.exports = class DemoController {
 
   index(req, res, next) {
     this.logger.info('ABC');
+    
     UserModel.demo();
-    return res.json({
 
+    return res.json({
+      status: 1,
+      message: [],
+      data: {}
     });
   }
 }
