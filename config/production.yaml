@@ -1,0 +1,9 @@
+mongo:
+  host: localhost
+  port: 27020
+  db: ABC
+
+app:
+  port: 4000
+
+timeInterval: 10 #in minutes
