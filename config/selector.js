@@ -71,44 +71,50 @@ global.SELECTOR = {
         hrefItem: 'a',
         //detail
         introImages: '#imgslide',
-        title: 'div.prj-detail > h1', //string // tên dự án
+        title: '#form1 > div.site-center > div.prj-detail > h1', //string // tên dự án
         divOverview: 'div.prj-right',
         divOverviewRow: 'div.prj-i',
         divOverviewRowLeft: 'div.fl',
         divOverviewRowRight: 'div.fr',
         
-        constructionArea: null, //number // diện tích xây dựng
-        descriptionInvestor: null, //string // giới thiệu chủ đầu tư
         description: 'div.prj-noidung.a1', //string
+        
+        tabs: '#form1 > div.site-center > div.prj-detail > div.prj-tab > ul',
+        
+        location: '#form1 > div.site-center > div.project-body-left > div:nth-child(4)', //string // vị trí, string HTML
+        infrastructure: '#form1 > div.site-center > div.project-body-left > div:nth-child(6)', //string // hạ tầng, string HTML
     
-        isShowLocationAndDesign: null, //boolean // show tab vị trí hạ tầng, thiết kế
-        location: null, //string // vị trí, string HTML
-        infrastructure: null, //string // hạ tầng, string HTML
+        overallSchema: '#TopContent_ProjectDetail1_ctl00_imgOveralView', //string[] // hình sơ đồ tổng thể
+        listGroundImages: '#TopContent_ProjectDetail1_ctl00_pnlFlat', //string[] // hình mặt bằng, có thể có nhiều hình
+        groundImages: 'img.mapster',
     
-        isShowGround: null, //boolean // show tab mặt bằng
-        overallSchema: null, //string[] // hình sơ đồ tổng thể
-        groundImages: null, //string[] // hình mặt bằng, có thể có nhiều hình
+        imageAlbums: 'div.album', //string[] // thư viện ảnh
+        imageAlbumsDetail: 'span.imageGallery', //string[] // thư viện ảnh
     
-        isShowImageLibs: null, //boolean / show tab thư viện ảnh
-        imageAlbums: null, //string[] // thư viện ảnh
-    
-        isShowProjectProgress: null, //boolean // show tab tiến đọ dự án
-        projectProgressTitle: null, //String
+        projectProgressTitle: '#form1 > div.site-center > div.project-body-left > div.prj-timeline > div > div.prj-title-group.bord', //String
         projectProgressStartDate: null, //Number
         projectProgressEndDate: null, //Number
-        projectProgressDate: null, //Number
-        projectProgressImages: null, //string []
+        projectProgressDate: 'div.events-content.bord.btn > ul > li', //Number
+        projectProgressImages: '#carousel0', //string []
     
     
         isShowTabVideo: null, //boolean // show tab video
         video: null, //string // link video, tạm thời lấy từ youtube
     
-        isShowFinancialSupport: null, //boolean // show tab hỗ trợ tài chính
-        finalcialSupport: null, //string // hỗ trợ tài chính, string HTML
+        financialSupport: '#pnlPaymentPlan', //string // hỗ trợ tài chính, string HTML
+        
+        detailInvestor: '#form1 > div.site-center > div.project-body-left > div.prj-enterprise', //string // chi tiết về chủ đầu tư, string HTML
     
-        isShowInvestor: null, //boolean // show tab chủ đầu tư
-        detailInvestor: null, //string // chi tiết về chủ đầu tư, string HTML
+    },
     
+    PROJECT_TABS: {
+        locationAndDesign: '/p1',
+        ground: '/p2',
+        imageLibs: '/p3',
+        projectProgress: '/p4',
+        tabVideo: '/p5',
+        financialSupport: '/p6',
+        investor: '/p7',
     },
     
 }

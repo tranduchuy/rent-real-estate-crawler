@@ -10,7 +10,7 @@ var HelperService = require('./helper.service');
 const apiService = require('./apiService');
 require('../constants/api');
 
-const crawlerPostSaleListItem = function (c, url) {
+const crawlerPostSaleListItem = function (c, url, ch, conn) {
     try {
         
         c.queue([{
@@ -39,7 +39,7 @@ const crawlerPostSaleListItem = function (c, url) {
                             if (hrefItem === null)
                                 logger.error('CRAWLER POST SALE LIST ITEM CALLBACK HREF ITEM NULL');
                             else {
-                                crawlerPostSaleDetail(c, services.getFullUrl(hrefItem));
+                                crawlerPostSaleDetail(c, services.getFullUrl(hrefItem), ch, conn);
                             }
                         });
                     }
@@ -53,7 +53,7 @@ const crawlerPostSaleListItem = function (c, url) {
     }
 }
 
-const crawlerPostSaleDetail = function (c, url) {
+const crawlerPostSaleDetail = function (c, url, ch, conn) {
     try {
         
         c.queue([{
@@ -193,7 +193,12 @@ const crawlerPostSaleDetail = function (c, url) {
                         :
                         params.images = services.getImageListPostSale(imageList.html());
                     
-                    apiService.postSale(params);
+                    const post =  apiService.postSale(params);
+                    if (post && post.post){
+                        console.log(post.post.content_id);
+                        const obj = {objectId: post.post.content_id, target: POST_TYPE.SALE};
+                        ch.sendToQueue(q, new Buffer(JSON.stringify(obj)), {persistent: true});
+                    }
                 }
                 done();
             }

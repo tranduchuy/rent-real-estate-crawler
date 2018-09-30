@@ -60,7 +60,9 @@ const services = {
         
         var unit = price.replace(tmp[0], '');
         
-        params.unit = HelperService.parserStringToInt(HelperService.getUnitByValue(formality, unit).id);
+        unit = HelperService.getUnitByValue(formality, unit);
+        if (unit)
+            params.unit = HelperService.parserStringToInt(unit.id);
         
         return params;
     },
@@ -232,13 +234,74 @@ const services = {
         const image = $("img");
         
         image.each(function (index, element) {
-            imgList.push($(this).attr('src').toString().trim().replace('640x430', '745x510'));
+            imgList.push({
+                id: $(this).attr('src').toString().trim().replace('640x430', '745x510'),
+                text: '',
+            });
         });
         
         return imgList;
     },
     
-    getDivOverviewProject(divOverview, params) {
+    //PROJECT
+    getlistGroundImagesProject(listGroundImages) {
+        
+        let imgList = [];
+        
+        const $ = cheerio.load(listGroundImages);
+        const image = $(SELECTOR.PROJECT.groundImages);
+        
+        image.each(function (index, element) {
+            imgList.push({
+                id: $(this).attr('src').toString().trim(),
+                text: '',
+            });
+        });
+        
+        return imgList;
+    },
+    
+    getlistImagesAlbumsProject(imageAlbums) {
+        
+        let imgList = [];
+        
+        const $ = cheerio.load(imageAlbums);
+        const image = $(SELECTOR.PROJECT.imageAlbumsDetail);
+        
+        image.each(function (index, element) {
+            imgList.push({
+                id: $(this).attr('data-src').toString().trim(),
+                text: '',
+            });
+        });
+        
+        return imgList;
+    },
+    
+    getProgressImageProject(projectProgressImages) {
+        
+        let imgList = [];
+        
+        const $ = cheerio.load(projectProgressImages);
+        const image = $('img');
+        
+        image.each(function (index, element) {
+            imgList.push({
+                id: $(this).attr('src').toString().trim(),
+                text: $(this).attr('title').toString().trim(),
+            });
+        });
+        
+        return imgList;
+    },
+    
+    getProgressDateProject(projectProgressDate) {
+        var parts = projectProgressDate.split('/');
+        var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
+        return mydate.getTime();
+    },
+    
+    getDivOverview(divOverview, params) {
         
         const $ = cheerio.load(divOverview);
         const feature = $(SELECTOR.PROJECT.divOverviewRow);
@@ -251,7 +314,28 @@ const services = {
             if (left.indexOf('Tổng diện tích') > -1) params.area = HelperService.parserStringToInt(services.cleanString($(SELECTOR.PROJECT.divOverviewRowRight, element).text().replace('.', '').replace('m²', '').trim()));
             if (left.indexOf('Quy mô dự án') > -1) params.projectScale = services.cleanString($(SELECTOR.PROJECT.divOverviewRowRight, element).text().trim());
             if (left.indexOf('Giá bán') > -1) params.price = HelperService.parserStringToInt(services.cleanString($(SELECTOR.PROJECT.divOverviewRowRight, element).text().replace('triệu/m²', '').replace('m²', '').replace('triệu', '').replace('/', '').trim()));
+            if (left.indexOf('Diện tích xây dựng') > -1) params.constructionArea = HelperService.parserStringToInt(services.cleanString($(SELECTOR.PROJECT.divOverviewRowRight, element).text().replace('.', '').replace('m²', '').trim()));
+            if (left.indexOf('Chủ đầu tư') > -1) params.descriptionInvestor = services.cleanString($(SELECTOR.PROJECT.divOverviewRowRight, element).text().trim());
+        });
+        return params;
+    },
+    
+    getTabsUrl(tabs, params) {
+        
+        const $ = cheerio.load(tabs);
+        const tab = $('li a');
+    
+        tab.each(function (index, element) {
             
+            const name = $(this).text();
+            
+            if (name.indexOf('Vị trí - Hạ tầng') > -1) params.isShowLocationAndDesign = true;
+            if (name.indexOf('Thiết kế - Mặt bằng') > -1) params.isShowGround = true;
+            if (name.indexOf('Thư viện ảnh') > -1) params.isShowImageLibs = true;
+            if (name.indexOf('Tiến độ dự án') > -1) params.isShowProjectProgress = true;
+            if (name.indexOf('Video') > -1) params.isShowTabVideo = true;
+            if (name.indexOf('Hỗ trợ tài chính') > -1) params.isShowFinancialSupport = true;
+            if (name.indexOf('Chủ đầu tư') > -1) params.isShowInvestor = true;
         });
         return params;
     },

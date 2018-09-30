@@ -8,4 +8,5 @@ global.API = {
     postBuy: API_HOST + 'api/v1/buys/add',
     postNews: API_HOST + 'admin/v1/news/add',
     postProject: API_HOST + 'admin/v1/projects/add',
+    updateProject: API_HOST + 'admin/v1/projects/update/{id}',
 }
