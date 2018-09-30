@@ -27,7 +27,9 @@ const postSale = function (params, ch, conn) {
             } else {
                 logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-            if (body && body.content_id)
+            
+            console.log(body.data);
+            if (body && body.data && body.data.content_id)
                 sendToQueue(body.content_id, ch, conn);
         });
     } catch (e) {
