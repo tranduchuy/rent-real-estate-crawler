@@ -7,7 +7,7 @@ require('../constants/api');
 const sendToQueue = function (content_id, ch, conn) {
     const obj = {objectId: content_id, target: POST_TYPE.SALE};
     console.log('obj', obj);
-    ch.sendToQueue(q, new Buffer(JSON.stringify(obj)), {persistent: true});
+    ch.sendToQueue(RABBIT_MQ.q, new Buffer(JSON.stringify(obj)), {persistent: true});
 };
 
 const postSale = function (params, ch, conn) {
