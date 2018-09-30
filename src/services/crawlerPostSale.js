@@ -77,7 +77,7 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                     
                     var params = {
                         title: null, // tiêu đề,
-    
+                        
                         formality: null,
                         type: null,
                         city: null,
@@ -99,26 +99,26 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         bedroomCount: null,
                         toiletCount: null,
                         furniture: null, // nội thất
-    
+                        
                         images: [],
-    
+                        
                         googleAddress: null,
-    
+                        
                         contactName: null,
                         contactAddress: null,
                         contactPhone: null,
                         contactMobile: null,
                         contactEmail: null,
                         receiveMail: null,
-    
+                        
                         // priority: null,
                         priorityId: null,
                         from: null,
                         to: null,
-    
+                        
                         captchaToken: API.captchaToken,
                     };
-    
+                    
                     var urlSearchBox = $(SELECTOR.POST_SALE.urlSearchBox);
                     (urlSearchBox.html() === null) ?
                         logger.error('CRAWLER POST SALE DETAIL CALLBACK GET --URL SEARCH BOX-- FAIL')
@@ -193,13 +193,8 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         :
                         params.images = services.getImageListPostSale(imageList.html());
                     
-                    const post =  apiService.postSale(params);
-                    console.log(post);
-                    if (post && post.post){
-                        console.log(post.post.content_id);
-                        const obj = {objectId: post.post.content_id, target: POST_TYPE.SALE};
-                        ch.sendToQueue(q, new Buffer(JSON.stringify(obj)), {persistent: true});
-                    }
+                    apiService.postSale(params, ch, conn);
+                    
                 }
                 done();
             }

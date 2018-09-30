@@ -41,12 +41,15 @@ const crawlerRun = () => {
     //     crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i));
     // }
     
+    // var ch;
+    // var conn;
+    // var q;
+    
     amqp.connect(getConnectStr(), function (err, conn) {
         conn.createChannel(function (err, ch) {
-            var q = 'RESIZE_IMAGES_FOR_CRAWLER2';
-             ch.assertQueue(q, { durable: true });
+             ch.assertQueue(RABBIT_MQ.q, { durable: true });
     
-            // // Note: on Node 6 Buffer.from(msg) should be used
+            // Note: on Node 6 Buffer.from(msg) should be used
             // const obj = {objectId: '5baeff3c7c90e813fb3288a4', target: 3};
             // ch.sendToQueue(q, new Buffer(JSON.stringify(obj)), {persistent: true});
             

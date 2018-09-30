@@ -4,8 +4,12 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Services');
 require('../constants/api');
 
-const postSale = function (params) {
-    // logger.info('apiService::postSale was called with: ' + JSON.stringify(params));
+const sendToQueue = function (content_id, ch, conn) {
+    const obj = {objectId: content_id, target: POST_TYPE.SALE};
+    ch.sendToQueue(q, new Buffer(JSON.stringify(obj)), {persistent: true});
+};
+
+const postSale = function (params, ch, conn) {
     const option = {
         uri: API.postSale,
         json: params,
@@ -20,9 +24,10 @@ const postSale = function (params) {
             if (body.status != 1) {
                 logger.error(`apiService::postSale error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info('apiService::postSale info' + JSON.stringify(option));
+                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-            return body;
+            if (body && body.content_id)
+                sendToQueue(body.content_id, ch, conn);
         });
     } catch (e) {
         logger.error(`apiService::postSale error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -131,5 +136,6 @@ module.exports = {
     postBuy,
     postNews,
     postProject,
-    updateProject
+    updateProject,
+    sendToQueue,
 }

@@ -6,6 +6,10 @@ global.POST_TYPE = {
     
 };
 
+global.RABBIT_MQ = {
+    q: 'RESIZE_IMAGES_FOR_CRAWLER2',
+}
+
 global.CRAWLER_CONFIG = {
     SOURCE: 'https://batdongsan.com.vn',
     MAX_PAGE: [
