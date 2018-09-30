@@ -9,7 +9,7 @@ var config = require('config');
 var HelperService = require('./helper.service');
 const apiService = require('./apiService');
 
-const crawlerNewsListItem = function (c, url, cate) {
+const crawlerNewsListItem = function (c, url, cate, ch, conn) {
     try {
         
         c.queue([{
@@ -40,7 +40,7 @@ const crawlerNewsListItem = function (c, url, cate) {
                             else {
                                 let image = $(SELECTOR.NEWS.image, element).attr('src');
                                 
-                                crawlerNewsDetail(c, services.getFullUrl(hrefItem), cate, image);
+                                crawlerNewsDetail(c, services.getFullUrl(hrefItem), cate, image, ch, conn);
                             }
                         });
                     }
@@ -54,7 +54,7 @@ const crawlerNewsListItem = function (c, url, cate) {
     }
 }
 
-const crawlerNewsDetail = function (c, url, cate, image) {
+const crawlerNewsDetail = function (c, url, cate, image, ch, conn) {
     try {
         
         c.queue([{
@@ -109,7 +109,7 @@ const crawlerNewsDetail = function (c, url, cate, image) {
                         :
                         params.content = content.text().trim();
     
-                    apiService.postNews(params);
+                    apiService.postNews(params, ch, conn);
                 }
                 done();
             }

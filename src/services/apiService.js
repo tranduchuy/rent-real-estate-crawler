@@ -38,7 +38,7 @@ const postSale = function (params, ch, conn) {
     }
 };
 
-const postBuy = function (params) {
+const postBuy = function (params, ch, conn) {
     const option = {
         uri: API.postBuy,
         json: params,
@@ -53,16 +53,18 @@ const postBuy = function (params) {
             if (err || body.status != 1) {
                 logger.error(`apiService::postBuy error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info('apiService::postBuy info' + JSON.stringify(option));
+                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-            return body;
+    
+            if (body && body.data && body.data.content_id)
+                sendToQueue(body.data.content_id, ch, conn);
         });
     } catch (e) {
         logger.error(`apiService::postBuy error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
     }
 };
 
-const postNews = function (params) {
+const postNews = function (params, ch, conn) {
     const option = {
         uri: API.postNews,
         json: params,
@@ -77,16 +79,18 @@ const postNews = function (params) {
             if (err || body.status != 1) {
                 logger.error(`apiService::postNews error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info('apiService::postNews info' + JSON.stringify(option));
+                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-            return body;
+    
+            if (body && body.data && body.data.content_id)
+                sendToQueue(body.data.content_id, ch, conn);
         });
     } catch (e) {
         logger.error(`apiService::postNews error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
     }
 };
 
-const postProject = function (params) {
+const postProject = function (params, ch, conn) {
     const option = {
         uri: API.postProject,
         json: params,
@@ -101,16 +105,18 @@ const postProject = function (params) {
             if (err || body.status != 1) {
                 logger.error(`apiService::postProject error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info(`apiService::postProject info ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-            return body;
+    
+            if (body && body.data && body.data.content_id)
+                sendToQueue(body.data.content_id, ch, conn);
         });
     } catch (e) {
         logger.error(`apiService::postProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
     }
 };
 
-const updateProject = function (params, id) {
+const updateProject = function (params, id, ch, conn) {
     console.log('updateProject', params);
     const option = {
         uri: API.updateProject.replace('{id}', id),
@@ -126,9 +132,11 @@ const updateProject = function (params, id) {
             if (err || body.status != 1) {
                 logger.error(`apiService::updateProject error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info(`apiService::updateProject info ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-            return body;
+    
+            if (body && body.data && body.data.content_id)
+                sendToQueue(body.data.content_id, ch, conn);
         });
     } catch (e) {
         logger.error(`apiService::updateProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);

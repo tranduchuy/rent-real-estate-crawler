@@ -10,7 +10,7 @@ var config = require('config');
 var HelperService = require('./helper.service');
 const apiService = require('./apiService');
 
-const crawlerProjectListItem = function (c, url, type) {
+const crawlerProjectListItem = function (c, url, type, ch, conn) {
     try {
         
         c.queue([{
@@ -39,7 +39,7 @@ const crawlerProjectListItem = function (c, url, type) {
                             if (hrefItem === null)
                                 logger.error('CRAWLER PROJECT LIST ITEM CALLBACK HREF ITEM NULL');
                             else {
-                                crawlerProjectDetail(c, services.getFullUrl(hrefItem), type);
+                                crawlerProjectDetail(c, services.getFullUrl(hrefItem), type, ch, conn);
                             }
                         });
                     }
@@ -53,7 +53,7 @@ const crawlerProjectListItem = function (c, url, type) {
     }
 }
 
-const crawlerProjectDetail = function (c, url, type) {
+const crawlerProjectDetail = function (c, url, type, ch, conn) {
     try {
         
         c.queue([{
@@ -88,39 +88,39 @@ const crawlerProjectDetail = function (c, url, type) {
                         constructionArea: null, //number // diện tích xây dựng
                         descriptionInvestor: null, //string // giới thiệu chủ đầu tư
                         description: null, //string // giới thiệ dự án, string HTML
-    
+                        
                         isShowLocationAndDesign: null, //boolean // show tab vị trí hạ tầng, thiết kế
                         location: null, //string // vị trí, string HTML
                         infrastructure: null, //string // hạ tầng, string HTML
-    
+                        
                         isShowGround: null, //boolean // show tab mặt bằng
                         overallSchema: [], //string[] // hình sơ đồ tổng thể
                         groundImages: [], //string[] // hình mặt bằng, có thể có nhiều hình
-    
+                        
                         isShowImageLibs: null, //boolean / show tab thư viện ảnh
                         imageAlbums: [], //string[] // thư viện ảnh
-    
+                        
                         isShowProjectProgress: null, //boolean // show tab tiến đọ dự án
                         projectProgressTitle: null, //String
                         projectProgressStartDate: null, //Number
                         projectProgressEndDate: null, //Number
                         projectProgressDate: null, //Number
                         projectProgressImages: [], //string []
-    
-    
+                        
+                        
                         isShowTabVideo: null, //boolean // show tab video
                         video: null, //string // link video, tạm thời lấy từ youtube
-    
+                        
                         isShowFinancialSupport: null, //boolean // show tab hỗ trợ tài chính
                         financialSupport: null, //string // hỗ trợ tài chính, string HTML
-    
+                        
                         isShowInvestor: null, //boolean // show tab chủ đầu tư
                         detailInvestor: null, //string // chi tiết về chủ đầu tư, string HTML
                     };
                     
                     params.isShowOverview = true;
                     params.type = type;
-    
+                    
                     const title = $(SELECTOR.PROJECT.title);
                     (title.html() === null) ?
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --TITLE-- FAIL')
@@ -137,8 +137,8 @@ const crawlerProjectDetail = function (c, url, type) {
                     (divOverview.html() === null) ?
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --DIV OVERVIEW-- FAIL')
                         :
-                       services.getDivOverview(divOverview.html(), params);
-    
+                        services.getDivOverview(divOverview.html(), params);
+                    
                     const description = $(SELECTOR.PROJECT.description);
                     (description.html() === null) ?
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --DESCRIPTION-- FAIL')
@@ -151,25 +151,25 @@ const crawlerProjectDetail = function (c, url, type) {
                         :
                         services.getTabsUrl(tabs.html(), params);
                     
-                    console.log(params);
-                    // apiService.postProject(params);
-                    
-                    var id = '5baeff3c7c90e813fb3288a5';
-                    // if (params.isShowLocationAndDesign)
-                    //     crawlerTabLocationAndDesign(c, url, id);
-                    // if (params.isShowGround)
-                    //     crawlerTabGround(c, url, id);
-                    // if (params.isShowImageLibs)
-                    //     crawlerTabImageAlbums(c, url, id);
-                    // if (params.isShowProjectProgress)
-                    //     crawlerTabProjectProgress(c, url, id);
-                    // if (params.isShowTabVideo)
-                    //     //TODO
-                    if (params.isShowFinancialSupport)
-                        crawlerTabFinancialSupport(c, url, id);
-                    // if (params.isShowInvestor)
-                    //     crawlerTabDetailInvestor(c, url, id);
-                    
+                    const post = apiService.postProject(params, ch, conn);
+                    if (post && post.data && post.data.content_id) {
+                        const id = post.data.content_id;
+                        
+                        if (params.isShowLocationAndDesign)
+                            crawlerTabLocationAndDesign(c, url, id, ch, conn);
+                        if (params.isShowGround)
+                            crawlerTabGround(c, url, id, ch, conn);
+                        if (params.isShowImageLibs)
+                            crawlerTabImageAlbums(c, url, id, ch, conn);
+                        if (params.isShowProjectProgress)
+                            crawlerTabProjectProgress(c, url, id, ch, conn);
+                        // if (params.isShowTabVideo)
+                        // TODO
+                        if (params.isShowFinancialSupport)
+                            crawlerTabFinancialSupport(c, url, id, ch, conn);
+                        if (params.isShowInvestor)
+                            crawlerTabDetailInvestor(c, url, id, ch, conn);
+                    }
                 }
                 done();
             }
@@ -180,7 +180,7 @@ const crawlerProjectDetail = function (c, url, type) {
     }
 };
 
-const crawlerTabLocationAndDesign= function (c, url, id) {
+const crawlerTabLocationAndDesign = function (c, url, id, ch, conn) {
     try {
         
         c.queue([{
@@ -207,20 +207,20 @@ const crawlerTabLocationAndDesign= function (c, url, id) {
                         location: null, //string // vị trí, string HTML
                         infrastructure: null, //string // hạ tầng, string HTML
                     };
-    
+                    
                     const location = $(SELECTOR.PROJECT.location);
                     (location.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB LOCATION AND DESIGN CALLBACK GET --LOCATION-- FAIL')
                         :
                         params.location = location.html();
-    
+                    
                     const infrastructure = $(SELECTOR.PROJECT.infrastructure);
                     (infrastructure.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB LOCATION AND DESIGN CALLBACK GET --INFRASTRUCTURE-- FAIL')
                         :
                         params.infrastructure = infrastructure.html();
                     
-                    apiService.updateProject(params, id);
+                    apiService.updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -231,7 +231,7 @@ const crawlerTabLocationAndDesign= function (c, url, id) {
     }
 }
 
-const crawlerTabGround= function (c, url, id) {
+const crawlerTabGround = function (c, url, id, ch, conn) {
     try {
         
         c.queue([{
@@ -258,7 +258,7 @@ const crawlerTabGround= function (c, url, id) {
                         overallSchema: null, //string[] // hình sơ đồ tổng thể
                         groundImages: null, //string[] // hình mặt bằng, có thể có nhiều hình
                     };
-    
+                    
                     const overallSchema = $(SELECTOR.PROJECT.overallSchema);
                     (overallSchema.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB GROUND CALLBACK GET --OVERALL SCHEMA-- FAIL')
@@ -267,14 +267,14 @@ const crawlerTabGround= function (c, url, id) {
                             id: overallSchema.attr('src').trim(),
                             text: ''
                         };
-    
+                    
                     const listGroundImages = $(SELECTOR.PROJECT.listGroundImages);
                     (listGroundImages.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB GROUND CALLBACK GET --LIST GROUND IMAGES-- FAIL')
                         :
                         params.groundImages = services.getlistGroundImagesProject(listGroundImages.html());
                     
-                    apiService.updateProject(params, id);
+                    apiService.updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -285,7 +285,7 @@ const crawlerTabGround= function (c, url, id) {
     }
 };
 
-const crawlerTabImageAlbums= function (c, url, id) {
+const crawlerTabImageAlbums = function (c, url, id, ch, conn) {
     try {
         
         c.queue([{
@@ -311,14 +311,14 @@ const crawlerTabImageAlbums= function (c, url, id) {
                     var params = {
                         imageAlbums: null,
                     };
-    
+                    
                     const imageAlbums = $(SELECTOR.PROJECT.imageAlbums);
                     (imageAlbums.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB IMAGE ALBUMS CALLBACK GET --IMAGE ALBUMS-- FAIL')
                         :
                         params.imageAlbums = services.getlistImagesAlbumsProject(imageAlbums.html());
                     
-                    apiService.updateProject(params, id);
+                    apiService.updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -329,7 +329,7 @@ const crawlerTabImageAlbums= function (c, url, id) {
     }
 };
 
-const crawlerTabProjectProgress= function (c, url, id) {
+const crawlerTabProjectProgress = function (c, url, id, ch, conn) {
     try {
         
         c.queue([{
@@ -359,26 +359,26 @@ const crawlerTabProjectProgress= function (c, url, id) {
                         projectProgressDate: null, //Number
                         projectProgressImages: null, //string []
                     };
-    
+                    
                     const projectProgressTitle = $(SELECTOR.PROJECT.projectProgressTitle);
                     (projectProgressTitle.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB PROJECT PROGRESS CALLBACK GET --PROJECT PROGRESS TITLE-- FAIL')
                         :
                         params.projectProgressTitle = projectProgressTitle.text().trim();
-    
+                    
                     const projectProgressDate = $(SELECTOR.PROJECT.projectProgressDate).attr('data-date').toString().trim();
                     (projectProgressDate === null) ?
                         logger.error('CRAWLER PROJECT TAB PROJECT PROGRESS CALLBACK GET --PROJECT PROGRESS DATE-- FAIL')
                         :
                         params.projectProgressDate = services.getProgressDateProject(projectProgressDate.toString().trim());
-    
+                    
                     const projectProgressImages = $(SELECTOR.PROJECT.projectProgressImages);
                     (projectProgressImages.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB PROJECT PROGRESS CALLBACK GET --PROJECT PROGRESS IMAGE-- FAIL')
                         :
                         params.projectProgressImages = services.getProgressImageProject(projectProgressImages.html());
                     
-                    apiService.updateProject(params, id);
+                    apiService.updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -389,7 +389,7 @@ const crawlerTabProjectProgress= function (c, url, id) {
     }
 };
 
-const crawlerTabFinancialSupport= function (c, url, id) {
+const crawlerTabFinancialSupport = function (c, url, id, ch, conn) {
     try {
         
         c.queue([{
@@ -422,7 +422,7 @@ const crawlerTabFinancialSupport= function (c, url, id) {
                         :
                         params.financialSupport = financialSupport.html();
                     
-                    apiService.updateProject(params, id);
+                    apiService.updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -433,7 +433,7 @@ const crawlerTabFinancialSupport= function (c, url, id) {
     }
 };
 
-const crawlerTabDetailInvestor= function (c, url, id) {
+const crawlerTabDetailInvestor = function (c, url, id, ch, conn) {
     try {
         
         c.queue([{
@@ -466,7 +466,7 @@ const crawlerTabDetailInvestor= function (c, url, id) {
                         :
                         params.detailInvestor = detailInvestor.html();
                     
-                    apiService.updateProject(params, id);
+                    apiService.updateProject(params, id, ch, conn);
                 }
                 done();
             }

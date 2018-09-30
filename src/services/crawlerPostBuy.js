@@ -10,7 +10,7 @@ var HelperService = require('./helper.service');
 const apiService = require('./apiService');
 require('../constants/api');
 
-const crawlerPostBuyListItem = function (c, url) {
+const crawlerPostBuyListItem = function (c, url, ch, conn) {
     try {
         
         c.queue([{
@@ -39,7 +39,7 @@ const crawlerPostBuyListItem = function (c, url) {
                             if (hrefItem === null)
                                 logger.error('CRAWLER POST BUY LIST ITEM CALLBACK HREF ITEM NULL');
                             else {
-                                crawlerPostBuyDetail(c, services.getFullUrl(hrefItem));
+                                crawlerPostBuyDetail(c, services.getFullUrl(hrefItem), ch, conn);
                             }
                         });
                     }
@@ -53,7 +53,7 @@ const crawlerPostBuyListItem = function (c, url) {
     }
 }
 
-const crawlerPostBuyDetail = function (c, url) {
+const crawlerPostBuyDetail = function (c, url, ch, conn) {
     try {
         
         c.queue([{
@@ -170,7 +170,7 @@ const crawlerPostBuyDetail = function (c, url) {
                         :
                         params.contactMobile = services.getValueDivRight(contactMobile.html());
     
-                    apiService.postBuy(params);
+                    apiService.postBuy(params, ch, conn);
                 }
                 done();
             }
