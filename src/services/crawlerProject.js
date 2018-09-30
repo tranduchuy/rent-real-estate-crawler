@@ -58,6 +58,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
         
         c.queue([{
             uri: url,
+            priority: CRAWLER_CONFIG.priorityPost,
             timeout: CRAWLER_CONFIG.timeout,
             jQuery: CRAWLER_CONFIG.jQuery,
             retries: CRAWLER_CONFIG.retries,
@@ -480,5 +481,4 @@ const crawlerTabDetailInvestor = function (c, url, id, ch, conn) {
 module.exports = {
     crawlerProjectListItem,
     crawlerProjectDetail,
-    crawlerTabLocationAndDesign,
 }

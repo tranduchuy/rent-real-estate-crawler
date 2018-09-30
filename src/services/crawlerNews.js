@@ -59,6 +59,7 @@ const crawlerNewsDetail = function (c, url, cate, image, ch, conn) {
         
         c.queue([{
             uri: url,
+            priority: CRAWLER_CONFIG.priorityPost,
             timeout: CRAWLER_CONFIG.timeout,
             jQuery: CRAWLER_CONFIG.jQuery,
             retries: CRAWLER_CONFIG.retries,

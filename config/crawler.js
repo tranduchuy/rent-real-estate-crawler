@@ -52,6 +52,7 @@ global.CRAWLER_CONFIG = {
     PAGE: 'p/{p}',
     
     priority: 1,
+    priorityPost: 3,
     
     jQuery: false,
     timeout: 1000 * 30,
