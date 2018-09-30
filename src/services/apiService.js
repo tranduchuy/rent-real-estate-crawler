@@ -6,7 +6,9 @@ require('../constants/api');
 
 const sendToQueue = function (content_id, ch, conn) {
     const obj = {objectId: content_id, target: POST_TYPE.SALE};
-    console.log('obj', obj);
+    
+    logger.info(`apiService::sendToQueue obj  ${JSON.stringify(obj)}`);
+    
     ch.sendToQueue(RABBIT_MQ.q, new Buffer(JSON.stringify(obj)), {persistent: true});
 };
 
@@ -22,7 +24,7 @@ const postSale = function (params, ch, conn) {
     };
     try {
         request(option, (err, httpResponse, body) => {
-            if (body.status != 1) {
+            if (err || body.status != 1) {
                 logger.error(`apiService::postSale error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
                 logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
@@ -48,7 +50,7 @@ const postBuy = function (params) {
     };
     try {
         request(option, (err, httpResponse, body) => {
-            if (body.status != 1) {
+            if (err || body.status != 1) {
                 logger.error(`apiService::postBuy error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
                 logger.info('apiService::postBuy info' + JSON.stringify(option));
@@ -72,7 +74,7 @@ const postNews = function (params) {
     };
     try {
         request(option, (err, httpResponse, body) => {
-            if (body.status != 1) {
+            if (err || body.status != 1) {
                 logger.error(`apiService::postNews error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
                 logger.info('apiService::postNews info' + JSON.stringify(option));
@@ -96,7 +98,7 @@ const postProject = function (params) {
     };
     try {
         request(option, (err, httpResponse, body) => {
-            if (body.status != 1) {
+            if (err || body.status != 1) {
                 logger.error(`apiService::postProject error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
                 logger.info(`apiService::postProject info ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
@@ -121,7 +123,7 @@ const updateProject = function (params, id) {
     };
     try {
         request(option, (err, httpResponse, body) => {
-            if (body.status != 1) {
+            if (err || body.status != 1) {
                 logger.error(`apiService::updateProject error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
                 logger.info(`apiService::updateProject info ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
