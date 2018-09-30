@@ -22,6 +22,7 @@ const postSale = function (params) {
             } else {
                 logger.info('apiService::postSale info' + JSON.stringify(option));
             }
+            return body;
         });
     } catch (e) {
         logger.error(`apiService::postSale error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -45,6 +46,7 @@ const postBuy = function (params) {
             } else {
                 logger.info('apiService::postBuy info' + JSON.stringify(option));
             }
+            return body;
         });
     } catch (e) {
         logger.error(`apiService::postBuy error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -68,6 +70,7 @@ const postNews = function (params) {
             } else {
                 logger.info('apiService::postNews info' + JSON.stringify(option));
             }
+            return body;
         });
     } catch (e) {
         logger.error(`apiService::postNews error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -91,6 +94,7 @@ const postProject = function (params) {
             } else {
                 logger.info(`apiService::postProject info ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
+            return body;
         });
     } catch (e) {
         logger.error(`apiService::postProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -115,6 +119,7 @@ const updateProject = function (params, id) {
             } else {
                 logger.info(`apiService::updateProject info ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
+            return body;
         });
     } catch (e) {
         logger.error(`apiService::updateProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);

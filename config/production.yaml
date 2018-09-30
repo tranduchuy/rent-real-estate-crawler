@@ -1,9 +1,15 @@
 mongo:
   host: localhost
-  port: 27020
-  db: ABC
+  port: 27017
+  db: bds_v1
 
 app:
-  port: 4000
+  port: 5000
 
-timeInterval: 10 #in minutes
+timeInterval: 1 #in minutes
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: admin
+  password: admin123

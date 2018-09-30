@@ -194,6 +194,7 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         params.images = services.getImageListPostSale(imageList.html());
                     
                     const post =  apiService.postSale(params);
+                    console.log(post);
                     if (post && post.post){
                         console.log(post.post.content_id);
                         const obj = {objectId: post.post.content_id, target: POST_TYPE.SALE};
