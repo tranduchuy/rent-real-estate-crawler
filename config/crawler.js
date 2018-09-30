@@ -10,14 +10,15 @@ global.RABBIT_MQ = {
     q: 'RESIZE_IMAGES_FOR_CRAWLER2',
 }
 
+global.MAX_PAGE = {
+    POST_SALE: 10,
+    POST_BUY: 5,
+    NEWS: 5,
+    PROJECT: 5,
+}
+
 global.CRAWLER_CONFIG = {
     SOURCE: 'https://batdongsan.com.vn',
-    MAX_PAGE: [
-        POST_SALE = 10,
-        POST_BUY = 5,
-        NEWS = 5,
-        PROJECT = 5,
-    ],
     POST_SALE: [
         'nha-dat-ban/p{p}',
         'nha-dat-cho-thue/p{p}',
