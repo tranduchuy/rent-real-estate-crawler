@@ -28,9 +28,8 @@ const postSale = function (params, ch, conn) {
                 logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
             
-            console.log(body.data);
             if (body && body.data && body.data.content_id)
-                sendToQueue(body.content_id, ch, conn);
+                sendToQueue(body.data.content_id, ch, conn);
         });
     } catch (e) {
         logger.error(`apiService::postSale error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
