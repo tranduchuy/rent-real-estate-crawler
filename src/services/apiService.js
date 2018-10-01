@@ -4,8 +4,8 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Services');
 require('../constants/api');
 
-const sendToQueue = function (content_id, ch, conn) {
-    const obj = {objectId: content_id, target: POST_TYPE.SALE};
+const sendToQueue = function (content_id, ch, conn, type) {
+    const obj = {objectId: content_id, target: type};
     
     logger.info(`apiService::sendToQueue obj  ${JSON.stringify(obj)}`);
     
@@ -31,7 +31,7 @@ const postSale = function (params, ch, conn) {
             }
             
             if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn);
+                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.SALE);
         });
     } catch (e) {
         logger.error(`apiService::postSale error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -57,7 +57,7 @@ const postBuy = function (params, ch, conn) {
             }
     
             if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn);
+                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.BUY);
         });
     } catch (e) {
         logger.error(`apiService::postBuy error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -83,7 +83,7 @@ const postNews = function (params, ch, conn) {
             }
     
             if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn);
+                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.NEWS);
         });
     } catch (e) {
         logger.error(`apiService::postNews error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -109,7 +109,7 @@ const postProject = function (params, ch, conn) {
             }
     
             if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn);
+                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.PROJECT);
         });
     } catch (e) {
         logger.error(`apiService::postProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -135,7 +135,7 @@ const updateProject = function (params, id, ch, conn) {
             }
     
             if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn);
+                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.PROJECT);
         });
     } catch (e) {
         logger.error(`apiService::updateProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
