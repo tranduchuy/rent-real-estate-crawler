@@ -53,7 +53,7 @@ const postBuy = function (params, ch, conn) {
             if (err || body.status != 1) {
                 logger.error(`apiService::postBuy error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+                logger.info(`apiService::postBuy info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
             if (body && body.data && body.data.content_id)
@@ -79,7 +79,7 @@ const postNews = function (params, ch, conn) {
             if (err || body.status != 1) {
                 logger.error(`apiService::postNews error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+                logger.info(`apiService::postNews info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
             if (body && body.data && body.data.content_id)
@@ -105,7 +105,7 @@ const postProject = function (params, ch, conn) {
             if (err || body.status != 1) {
                 logger.error(`apiService::postProject error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+                logger.info(`apiService::postProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
             if (body && body.data && body.data.content_id)
@@ -117,7 +117,6 @@ const postProject = function (params, ch, conn) {
 };
 
 const updateProject = function (params, id, ch, conn) {
-    console.log('updateProject', params);
     const option = {
         uri: API.updateProject.replace('{id}', id),
         json: params,
@@ -132,7 +131,7 @@ const updateProject = function (params, id, ch, conn) {
             if (err || body.status != 1) {
                 logger.error(`apiService::updateProject error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             } else {
-                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+                logger.info(`apiService::updateProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
             if (body && body.data && body.data.content_id)
