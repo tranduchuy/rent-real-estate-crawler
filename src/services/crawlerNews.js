@@ -102,7 +102,7 @@ const crawlerNewsDetail = function (c, url, cate, image, ch, conn) {
                     (description.html() === null) ?
                         logger.error('CRAWLER NEWS DETAIL CALLBACK GET --DESCRIPTION-- FAIL')
                         :
-                        params.description = description.text().trim();
+                        params.description = description.html();
                     
                     const content = $(SELECTOR.NEWS.content);
                     (content.html() === null) ?

@@ -150,7 +150,7 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                     (description.html() === null) ?
                         logger.error('CRAWLER POST SALE DETAIL CALLBACK GET --DESCRIPTION-- FAIL')
                         :
-                        params.description = description.text();
+                        params.description = description.html();
                     
                     const listFeature = $(SELECTOR.POST_SALE.listFeature);
                     (listFeature.html() === null) ?
