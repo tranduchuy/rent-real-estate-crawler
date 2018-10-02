@@ -238,18 +238,18 @@ const crawlerTabGround = function (c, url, id, ch, conn) {
                     const $ = cheerio.load(res.body);
                     
                     var params = {
-                        overallSchema: null, //string[] // hình sơ đồ tổng thể
-                        groundImages: null, //string[] // hình mặt bằng, có thể có nhiều hình
+                        overallSchema: [], //string[] // hình sơ đồ tổng thể
+                        groundImages: [], //string[] // hình mặt bằng, có thể có nhiều hình
                     };
                     
                     const overallSchema = $(SELECTOR.PROJECT.overallSchema);
                     (overallSchema.html() === null) ?
                         logger.error('CRAWLER PROJECT TAB GROUND CALLBACK GET --OVERALL SCHEMA-- FAIL')
                         :
-                        params.overallSchema = {
+                        params.overallSchema.push({
                             id: overallSchema.attr('src').trim(),
                             text: ''
-                        };
+                        });
                     
                     const listGroundImages = $(SELECTOR.PROJECT.listGroundImages);
                     (listGroundImages.html() === null) ?
