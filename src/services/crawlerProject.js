@@ -203,7 +203,7 @@ const crawlerTabLocationAndDesign = function (c, url, id, ch, conn) {
                         :
                         params.infrastructure = infrastructure.html();
                     
-                    apiService.updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -257,7 +257,7 @@ const crawlerTabGround = function (c, url, id, ch, conn) {
                         :
                         params.groundImages = services.getlistGroundImagesProject(listGroundImages.html());
                     
-                    apiService.updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -301,7 +301,7 @@ const crawlerTabImageAlbums = function (c, url, id, ch, conn) {
                         :
                         params.imageAlbums = services.getlistImagesAlbumsProject(imageAlbums.html());
                     
-                    apiService.updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -361,7 +361,7 @@ const crawlerTabProjectProgress = function (c, url, id, ch, conn) {
                         :
                         params.projectProgressImages = services.getProgressImageProject(projectProgressImages.html());
                     
-                    apiService.updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -405,7 +405,7 @@ const crawlerTabFinancialSupport = function (c, url, id, ch, conn) {
                         :
                         params.financialSupport = financialSupport.html();
                     
-                    apiService.updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, ch, conn);
                 }
                 done();
             }
@@ -449,7 +449,7 @@ const crawlerTabDetailInvestor = function (c, url, id, ch, conn) {
                         :
                         params.detailInvestor = detailInvestor.html();
                     
-                    apiService.updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, ch, conn);
                 }
                 done();
             }
