@@ -113,20 +113,20 @@ const postProject = function (c, url, params, ch, conn) {
                 const id = body.data.content_id;
                 sendToQueue(id, ch, conn, POST_TYPE.PROJECT);
     
-                if (params.isShowLocationAndDesign)
-                    crawlerProject.crawlerTabLocationAndDesign(c, url, id, ch, conn);
-                if (params.isShowGround)
-                    crawlerProject.crawlerTabGround(c, url, id, ch, conn);
-                if (params.isShowImageLibs)
-                    crawlerProject.crawlerTabImageAlbums(c, url, id, ch, conn);
-                if (params.isShowProjectProgress)
-                    crawlerProject.crawlerTabProjectProgress(c, url, id, ch, conn);
-                // if (params.isShowTabVideo)
-                // TODO
-                if (params.isShowFinancialSupport)
-                    crawlerProject.crawlerTabFinancialSupport(c, url, id, ch, conn);
-                if (params.isShowInvestor)
-                    crawlerProject.crawlerTabDetailInvestor(c, url, id, ch, conn);
+                // if (params.isShowLocationAndDesign)
+                //     crawlerProject.crawlerTabLocationAndDesign(c, url, id, ch, conn);
+                // if (params.isShowGround)
+                //     crawlerProject.crawlerTabGround(c, url, id, ch, conn);
+                // if (params.isShowImageLibs)
+                //     crawlerProject.crawlerTabImageAlbums(c, url, id, ch, conn);
+                // if (params.isShowProjectProgress)
+                //     crawlerProject.crawlerTabProjectProgress(c, url, id, ch, conn);
+                // // if (params.isShowTabVideo)
+                // // TODO
+                // if (params.isShowFinancialSupport)
+                //     crawlerProject.crawlerTabFinancialSupport(c, url, id, ch, conn);
+                // if (params.isShowInvestor)
+                //     crawlerProject.crawlerTabDetailInvestor(c, url, id, ch, conn);
             }
         });
     } catch (e) {
