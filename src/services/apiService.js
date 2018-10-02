@@ -110,10 +110,9 @@ const postProject = function (c, url, params, ch, conn) {
             }
     
             if (body && body.data && body.data.content_id){
-                const id = body.data.content_id;
-                sendToQueue(id, ch, conn, POST_TYPE.PROJECT);
-                
-                console.log(params);
+                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.PROJECT);
+    
+                const id = body.data._id;
     
                 if (params.isShowLocationAndDesign)
                     require('./crawlerProject').crawlerTabLocationAndDesign(c, url, id, ch, conn);
