@@ -333,7 +333,7 @@ const services = {
             if (name.indexOf('Thiết kế - Mặt bằng') > -1) params.isShowGround = true;
             if (name.indexOf('Thư viện ảnh') > -1) params.isShowImageLibs = true;
             if (name.indexOf('Tiến độ dự án') > -1) params.isShowProjectProgress = true;
-            if (name.indexOf('Video') > -1) params.isShowTabVideo = true;
+            // if (name.indexOf('Video') > -1) params.isShowTabVideo = true; TODO
             if (name.indexOf('Hỗ trợ tài chính') > -1) params.isShowFinancialSupport = true;
             if (name.indexOf('Chủ đầu tư') > -1) params.isShowInvestor = true;
         });
