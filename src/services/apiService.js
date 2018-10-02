@@ -153,8 +153,8 @@ const updateProject = function (params, id, ch, conn) {
                 logger.info(`apiService::updateProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
-            if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.PROJECT);
+            if (body && body.data && body.data._id)
+                sendToQueue(body.data._id, ch, conn, POST_TYPE.PROJECT);
         });
     } catch (e) {
         logger.error(`apiService::updateProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
