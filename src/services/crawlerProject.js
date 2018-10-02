@@ -151,8 +151,8 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --TABS-- FAIL')
                         :
                         services.getTabsUrl(tabs.html(), params);
-                    
-                    apiService.postProject(c, url, params, ch, conn);
+    
+                    require('./apiService').postProject(c, url, params, ch, conn);
                 }
                 done();
             }
