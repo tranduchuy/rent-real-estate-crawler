@@ -82,7 +82,8 @@ const crawlerNewsDetail = function (c, url, cate, image, ch, conn) {
                         content: null, //String,
                         cate: null, //Number,
                         image: null, //String,
-                        description: null, //String,
+                        description: null,
+                        createdByType: POST_TYPE.createdByTypeCraw,
                     };
                     
                     params.cate = cate;

@@ -13,7 +13,10 @@ const sendToQueue = function (content_id, ch, conn, type) {
     ch.sendToQueue(RABBIT_MQ.q, new Buffer(JSON.stringify(obj)), {persistent: true});
 };
 
-const postSale = function (params, ch, conn) {
+const postSale = function (par, ch, conn) {
+    
+    const params = par;
+    
     const option = {
         uri: API.postSale,
         json: params,
@@ -39,7 +42,10 @@ const postSale = function (params, ch, conn) {
     }
 };
 
-const postBuy = function (params, ch, conn) {
+const postBuy = function (par, ch, conn) {
+    
+    const params = par;
+    
     const option = {
         uri: API.postBuy,
         json: params,
@@ -65,7 +71,10 @@ const postBuy = function (params, ch, conn) {
     }
 };
 
-const postNews = function (params, ch, conn) {
+const postNews = function (par, ch, conn) {
+    
+    const params = par;
+    
     const option = {
         uri: API.postNews,
         json: params,
@@ -91,7 +100,10 @@ const postNews = function (params, ch, conn) {
     }
 };
 
-const postProject = function (c, url, params, ch, conn) {
+const postProject = function (c, url, par, ch, conn) {
+    
+    const params = par;
+    
     const option = {
         uri: API.postProject,
         json: params,
@@ -135,7 +147,10 @@ const postProject = function (c, url, params, ch, conn) {
     }
 };
 
-const updateProject = function (params, id, ch, conn) {
+const updateProject = function (par, id, ch, conn) {
+    
+    const params = par;
+    
     const option = {
         uri: API.updateProject.replace('{id}', id),
         json: params,

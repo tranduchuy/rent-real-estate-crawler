@@ -43,15 +43,15 @@ const crawlerRun = () => {
             
             var i = 1;
             // for (var i = 1; i = MAX_PAGE.POST_SALE; i++) {
-            //     crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i), ch, conn);
+                crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i), ch, conn);
             // }
             
             // for (var i = 1; i = MAX_PAGE.POST_BUY; i++) {
-            //     crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
+                crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
             // }
             
             // for (var i = 1; i = MAX_PAGE.NEWS; i++) {
-            //     crawlerNews.crawlerNewsListItem(c, services.getFullUrl(CRAWLER_CONFIG.NEWS[0].url).replace('{p}', i), CRAWLER_CONFIG.NEWS[0].id, ch, conn);
+                crawlerNews.crawlerNewsListItem(c, services.getFullUrl(CRAWLER_CONFIG.NEWS[0].url).replace('{p}', i), CRAWLER_CONFIG.NEWS[0].id, ch, conn);
             // }
             
             // for (var i = 1; i = MAX_PAGE.PROJECT; i++) {

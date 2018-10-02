@@ -117,6 +117,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                         
                         isShowInvestor: null, //boolean // show tab chủ đầu tư
                         detailInvestor: null, //string // chi tiết về chủ đầu tư, string HTML
+                        createdByType: POST_TYPE.createdByTypeCraw,
                     };
                     
                     params.isShowOverview = true;

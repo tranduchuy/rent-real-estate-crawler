@@ -118,6 +118,7 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         to: null,
                         
                         captchaToken: API.captchaToken,
+                        createdByType: POST_TYPE.createdByTypeCraw,
                     };
                     
                     var urlSearchBox = $(SELECTOR.POST_SALE.urlSearchBox);

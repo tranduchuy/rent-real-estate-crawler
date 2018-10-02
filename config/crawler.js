@@ -3,7 +3,7 @@ global.POST_TYPE = {
     BUY: 2,
     PROJECT: 3,
     NEWS: 4,
-    
+    createdByTypeCraw: 2
 };
 
 global.RABBIT_MQ = {
