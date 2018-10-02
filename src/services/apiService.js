@@ -3,6 +3,7 @@ var _ = require('lodash');
 const log4js = require('log4js');
 const logger = log4js.getLogger('Services');
 require('../constants/api');
+const crawlerProject = require('./crawlerProject');
 
 const sendToQueue = function (content_id, ch, conn, type) {
     const obj = {objectId: content_id, target: type};
@@ -90,7 +91,7 @@ const postNews = function (params, ch, conn) {
     }
 };
 
-const postProject = function (params, ch, conn) {
+const postProject = function (c, url, params, ch, conn) {
     const option = {
         uri: API.postProject,
         json: params,
@@ -108,8 +109,25 @@ const postProject = function (params, ch, conn) {
                 logger.info(`apiService::postProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
-            if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.PROJECT);
+            if (body && body.data && body.data.content_id){
+                const id = body.data.content_id;
+                sendToQueue(id, ch, conn, POST_TYPE.PROJECT);
+    
+                if (params.isShowLocationAndDesign)
+                    crawlerProject.crawlerTabLocationAndDesign(c, url, id, ch, conn);
+                if (params.isShowGround)
+                    crawlerProject.crawlerTabGround(c, url, id, ch, conn);
+                if (params.isShowImageLibs)
+                    crawlerProject.crawlerTabImageAlbums(c, url, id, ch, conn);
+                if (params.isShowProjectProgress)
+                    crawlerProject.crawlerTabProjectProgress(c, url, id, ch, conn);
+                // if (params.isShowTabVideo)
+                // TODO
+                if (params.isShowFinancialSupport)
+                    crawlerProject.crawlerTabFinancialSupport(c, url, id, ch, conn);
+                if (params.isShowInvestor)
+                    crawlerProject.crawlerTabDetailInvestor(c, url, id, ch, conn);
+            }
         });
     } catch (e) {
         logger.error(`apiService::postProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);

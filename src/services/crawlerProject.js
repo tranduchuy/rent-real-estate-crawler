@@ -152,25 +152,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                         :
                         services.getTabsUrl(tabs.html(), params);
                     
-                    const post = apiService.postProject(params, ch, conn);
-                    if (post && post.data && post.data.content_id) {
-                        const id = post.data.content_id;
-                        
-                        if (params.isShowLocationAndDesign)
-                            crawlerTabLocationAndDesign(c, url, id, ch, conn);
-                        if (params.isShowGround)
-                            crawlerTabGround(c, url, id, ch, conn);
-                        if (params.isShowImageLibs)
-                            crawlerTabImageAlbums(c, url, id, ch, conn);
-                        if (params.isShowProjectProgress)
-                            crawlerTabProjectProgress(c, url, id, ch, conn);
-                        // if (params.isShowTabVideo)
-                        // TODO
-                        if (params.isShowFinancialSupport)
-                            crawlerTabFinancialSupport(c, url, id, ch, conn);
-                        if (params.isShowInvestor)
-                            crawlerTabDetailInvestor(c, url, id, ch, conn);
-                    }
+                    apiService.postProject(c, url, params, ch, conn);
                 }
                 done();
             }
@@ -481,4 +463,10 @@ const crawlerTabDetailInvestor = function (c, url, id, ch, conn) {
 module.exports = {
     crawlerProjectListItem,
     crawlerProjectDetail,
+    crawlerTabLocationAndDesign,
+    crawlerTabGround,
+    crawlerTabImageAlbums,
+    crawlerTabProjectProgress,
+    crawlerTabFinancialSupport,
+    crawlerTabDetailInvestor
 }
