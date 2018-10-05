@@ -47,11 +47,11 @@ const crawlerRun = () => {
             //     crawlerPostSale.crawlerPostSaleListItem(c, url, ch, conn);
             // };
             
-            var i = 1;
-            // for (var i = 1; i = MAX_PAGE.POST_SALE; i++) {
+            // var i = 1;
+            for (var i = 1; i = MAX_PAGE.POST_SALE; i++) {
                 
                 crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i), ch, conn);
-            // }
+            }
             
             // for (var i = 1; i = MAX_PAGE.POST_BUY; i++) {
             //     crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
