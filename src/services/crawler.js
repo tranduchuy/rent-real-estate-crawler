@@ -15,6 +15,8 @@ var amqp = require('amqplib/callback_api');
 
 const rabbitMQConfig = config.get('rabbitmq');
 
+var CronJob = require('cron').CronJob;
+
 const getConnectStr = () => {
     return `amqp://${rabbitMQConfig.username}:${rabbitMQConfig.password}@${rabbitMQConfig.host}:${rabbitMQConfig.port}/`;
 };
@@ -41,30 +43,38 @@ const crawlerRun = () => {
         conn.createChannel(function (err, ch) {
             ch.assertQueue(RABBIT_MQ.q, {durable: true});
             
+            // const run = (url) => {
+            //     crawlerPostSale.crawlerPostSaleListItem(c, url, ch, conn);
+            // };
+            
             var i = 1;
             // for (var i = 1; i = MAX_PAGE.POST_SALE; i++) {
+                
                 crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i), ch, conn);
             // }
             
             // for (var i = 1; i = MAX_PAGE.POST_BUY; i++) {
-                crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
+            //     crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
             // }
             
             // for (var i = 1; i = MAX_PAGE.NEWS; i++) {
-                crawlerNews.crawlerNewsListItem(c, services.getFullUrl(CRAWLER_CONFIG.NEWS[0].url).replace('{p}', i), CRAWLER_CONFIG.NEWS[0].id, ch, conn);
+            //     crawlerNews.crawlerNewsListItem(c, services.getFullUrl(CRAWLER_CONFIG.NEWS[0].url).replace('{p}', i), CRAWLER_CONFIG.NEWS[0].id, ch, conn);
             // }
             
             // for (var i = 1; i = MAX_PAGE.PROJECT; i++) {
-                crawlerProject.crawlerProjectListItem(c, services.getFullUrl(CRAWLER_CONFIG.PROJECT[0].url.replace('{p}', i)), CRAWLER_CONFIG.PROJECT[0].id, ch, conn);
+            //     crawlerProject.crawlerProjectListItem(c, services.getFullUrl(CRAWLER_CONFIG.PROJECT[0].url.replace('{p}', i)), CRAWLER_CONFIG.PROJECT[0].id, ch, conn);
             // }
-            
-            //conn.close(); close connection
+    
+            //conn.close(); //close connection
         });
     });
     
 };
 
 module.exports = () => {
-    // setInterval(crawlerRun, 1000 * 60 * config.get('timeInterval'));
-    setInterval(crawlerRun, 1000);
+    const timeCron = '* * 0 * * *';
+    // new CronJob(timeCron, function() {
+        logger.info(`CRON JOB RUN AT ${timeCron}`);
+        crawlerRun();
+    // }, null, true, 'Asia/Ho_Chi_Minh');
 }

@@ -1,41 +1,17 @@
 const config = require('config');
+const mongoConfig = config.get('mongo');
 const mongoose = require('mongoose');
-const mongo = config.get('mongo');
 
-let connectElements = [
-  'mongodb://',
-  mongo.user,
-  ':',
-  mongo.password,
-  '@',
-  mongo.host,
-  ':',
-  mongo.port,
-  '/',
-  mongo.dbdb
-];
+module.exports = (callback) => {
+    const connectDbStr = `mongodb://${mongoConfig.username}:${mongoConfig.password}@${mongoConfig['host']}:${mongoConfig['port']}/${mongoConfig['databaseName']}`;
 
-if (process.env.NODE_ENV == 'development' || !process.env.NODE_ENV) {
-  connectElements = [
-    'mongodb://',
-    mongo.host,
-    ':',
-    mongo.port,
-    '/',
-    mongo.dbdb
-  ];
-}
+    console.log('Connection String: ', connectDbStr);
 
-const connectionString = connectElements.join('');
-
-const connnectDb = (callback) => {
-  mongoose.connect(connectionString, (err) => {
-    if (err) {
-      return console.error('Cannot connect mongodb');
-    }
-
-    return callback();
-  });
-}
-
-module.exports = connnectDb
+    mongoose.connect(connectDbStr, {useNewUrlParser: true}, function (err) {
+        if (err) {
+            throw err;
+        } else {
+            callback();
+        }
+    });
+};

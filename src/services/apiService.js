@@ -23,7 +23,7 @@ const postSale = function (par, ch, conn) {
         method: 'POST',
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-            'access_token': API.tokenUser,
+            'accessToken': API.tokenUser,
         }
     };
     try {
@@ -52,7 +52,7 @@ const postBuy = function (par, ch, conn) {
         method: 'POST',
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-            'access_token': API.tokenUser,
+            'accessToken': API.tokenUser,
         }
     };
     try {
@@ -81,7 +81,7 @@ const postNews = function (par, ch, conn) {
         method: 'POST',
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-            'access_token': API.tokenAdmin,
+            'accessToken': API.tokenAdmin,
         }
     };
     try {
@@ -110,7 +110,7 @@ const postProject = function (c, url, par, ch, conn) {
         method: 'POST',
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-            'access_token': API.tokenAdmin,
+            'accessToken': API.tokenAdmin,
         }
     };
     try {
@@ -157,7 +157,7 @@ const updateProject = function (par, id, ch, conn) {
         method: 'POST',
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-            'access_token': API.tokenAdmin,
+            'accessToken': API.tokenAdmin,
         }
     };
     try {
