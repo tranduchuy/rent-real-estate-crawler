@@ -48,7 +48,7 @@ const crawlerRun = () => {
             // };
             
             // var i = 1;
-            for (var i = 1; i = MAX_PAGE.POST_SALE; i++) {
+            for (var i = 1; i <= MAX_PAGE.POST_SALE; i++) {
                 
                 crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i), ch, conn);
             }
