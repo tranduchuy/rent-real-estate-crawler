@@ -15,8 +15,6 @@ const sendToQueue = function (content_id, ch, conn, type) {
 
 const postSale = function (par, ch, conn) {
     
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-    
     const params = par;
     
     const option = {
@@ -24,11 +22,11 @@ const postSale = function (par, ch, conn) {
         json: params,
         method: 'POST',
         headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
             'accesstoken': API.tokenUser,
         },
     };
     try {
-        console.log("---------------" + process.env.NODE_TLS_REJECT_UNAUTHORIZED);
         request(option, (err, httpResponse, body) => {
             if (err || body.status != 1) {
                 logger.error(`apiService::postSale error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
