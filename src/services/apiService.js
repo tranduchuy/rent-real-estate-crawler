@@ -14,6 +14,7 @@ const sendToQueue = function (content_id, ch, conn, type) {
 };
 
 const postSale = function (par, ch, conn) {
+    
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     
     const params = par;
@@ -27,6 +28,7 @@ const postSale = function (par, ch, conn) {
         },
     };
     try {
+        console.log("---------------" + process.env.NODE_TLS_REJECT_UNAUTHORIZED);
         request(option, (err, httpResponse, body) => {
             if (err || body.status != 1) {
                 logger.error(`apiService::postSale error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
