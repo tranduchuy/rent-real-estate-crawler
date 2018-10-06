@@ -1,4 +1,4 @@
-const API_HOST = 'http://159.89.202.248:3000/;';
+const API_HOST = 'http://159.89.202.248:3000/';
 
 global.API = {
     captchaToken: 'captchaToken',
