@@ -13,6 +13,35 @@ const sendToQueue = function (content_id, ch, conn, type) {
     ch.sendToQueue(RABBIT_MQ.q, new Buffer(JSON.stringify(obj)), {persistent: true});
 };
 
+const getConfigCrawler = function () {
+    
+    const params = par;
+    
+    const option = {
+        uri: API.postSale,
+        json: params,
+        method: 'POST',
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+            'accesstoken': API.tokenUser,
+        },
+    };
+    try {
+        request(option, (err, httpResponse, body) => {
+            if (err || body.status != 1) {
+                logger.error(`apiService::postSale error: ${JSON.stringify(err)}. Params: ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+            } else {
+                logger.info(`apiService::postSale info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
+            }
+            
+            if (body && body.data && body.data.content_id)
+                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.SALE);
+        });
+    } catch (e) {
+        logger.error(`apiService::postSale error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
+    }
+};
+
 const postSale = function (par, ch, conn) {
     
     const params = par;

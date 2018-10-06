@@ -53,17 +53,17 @@ const crawlerRun = () => {
                 crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i), ch, conn);
             }
             
-            // for (var i = 1; i = MAX_PAGE.POST_BUY; i++) {
-            //     crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
-            // }
+            for (var i = 1; i = MAX_PAGE.POST_BUY; i++) {
+                crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
+            }
             
-            // for (var i = 1; i = MAX_PAGE.NEWS; i++) {
-            //     crawlerNews.crawlerNewsListItem(c, services.getFullUrl(CRAWLER_CONFIG.NEWS[0].url).replace('{p}', i), CRAWLER_CONFIG.NEWS[0].id, ch, conn);
-            // }
+            for (var i = 1; i = MAX_PAGE.NEWS; i++) {
+                crawlerNews.crawlerNewsListItem(c, services.getFullUrl(CRAWLER_CONFIG.NEWS[0].url).replace('{p}', i), CRAWLER_CONFIG.NEWS[0].id, ch, conn);
+            }
             
-            // for (var i = 1; i = MAX_PAGE.PROJECT; i++) {
-            //     crawlerProject.crawlerProjectListItem(c, services.getFullUrl(CRAWLER_CONFIG.PROJECT[0].url.replace('{p}', i)), CRAWLER_CONFIG.PROJECT[0].id, ch, conn);
-            // }
+            for (var i = 1; i = MAX_PAGE.PROJECT; i++) {
+                crawlerProject.crawlerProjectListItem(c, services.getFullUrl(CRAWLER_CONFIG.PROJECT[0].url.replace('{p}', i)), CRAWLER_CONFIG.PROJECT[0].id, ch, conn);
+            }
     
             //conn.close(); //close connection
         });
