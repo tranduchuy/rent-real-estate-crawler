@@ -9,9 +9,6 @@ const app = express();
 var log4js = require('log4js');
 log4js.configure('./config/log4js.json');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
-
 var port = config.get('app').port;
 
 app.use(express.json());

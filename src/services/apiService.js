@@ -14,6 +14,7 @@ const sendToQueue = function (content_id, ch, conn, type) {
 };
 
 const postSale = function (par, ch, conn) {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     
     const params = par;
     
