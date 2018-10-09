@@ -70,7 +70,8 @@ const crawlerRun = (configCrawler) => {
             //NEWS
             if (configCrawler.news) {
                 CRAWLER_CONFIG.NEWS.forEach(function (item) {
-                    for (var i = 1; i < (configCrawler.news / CRAWLER_CONFIG.NEWS.length / 14); i++) {
+                    console.log(item);
+                    for (var i = 1; i <= (configCrawler.news / CRAWLER_CONFIG.NEWS.length / 14); i++) {
                         crawlerNews.crawlerNewsListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
                     }
                 });
@@ -79,7 +80,8 @@ const crawlerRun = (configCrawler) => {
             //PROJECT
             if (configCrawler.project) {
                 CRAWLER_CONFIG.PROJECT.forEach(function (item) {
-                    for (var i = 1; i < (configCrawler.project / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
+                    console.log(item);
+                    for (var i = 1; i <= (configCrawler.project / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
                         crawlerProject.crawlerProjectListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
                     }
                 });
