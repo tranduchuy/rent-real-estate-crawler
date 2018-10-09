@@ -37,34 +37,53 @@ catch (e) {
     logger.error('CRAWLER CATCH ERROR: ' + JSON.stringify(e));
 }
 
-const crawlerRun = () => {
+const crawlerRun = (configCrawler) => {
     
     amqp.connect(getConnectStr(), function (err, conn) {
         conn.createChannel(function (err, ch) {
             ch.assertQueue(RABBIT_MQ.q, {durable: true});
             
-            // const run = (url) => {
-            //     crawlerPostSale.crawlerPostSaleListItem(c, url, ch, conn);
-            // };
-            
-            // var i = 1;
-            // for (var i = 1; i < MAX_PAGE.POST_SALE; i++) {
-            //
-            //     crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_SALE[0]).replace('{p}', i), ch, conn);
-            // }
-            //
-            // for (var i = 1; i < MAX_PAGE.POST_BUY; i++) {
-            //     crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.POST_BUY[0]).replace('{p}', i), ch, conn);
-            // }
-            
-            for (var i = 1; i < MAX_PAGE.NEWS; i++) {
-                crawlerNews.crawlerNewsListItem(c, services.getFullUrl(CRAWLER_CONFIG.NEWS[0].url).replace('{p}', i), CRAWLER_CONFIG.NEWS[0].id, ch, conn);
+            //Post SALE
+            if (configCrawler.realEstateSale) {
+                for (var i = 1; i <= (configCrawler.realEstateSale / 20); i++) {
+                    crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_SALE.replace('{p}', i)), ch, conn);
+                }
+            }
+            if (configCrawler.realEstateRent) {
+                for (var i = 1; i <= (configCrawler.realEstateRent / 20); i++) {
+                    crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_RENT.replace('{p}', i)), ch, conn);
+                }
             }
             
-            for (var i = 1; i < MAX_PAGE.PROJECT; i++) {
-                crawlerProject.crawlerProjectListItem(c, services.getFullUrl(CRAWLER_CONFIG.PROJECT[0].url.replace('{p}', i)), CRAWLER_CONFIG.PROJECT[0].id, ch, conn);
+            //Post Buy
+            if (configCrawler.realEstateNeedBuy) {
+                for (var i = 1; i <= (configCrawler.realEstateNeedBuy / 20); i++) {
+                    crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_NEED_BUY.replace('{p}', i)), ch, conn);
+                }
             }
-    
+            if (configCrawler.realEstateNeedRent) {
+                for (var i = 1; i <= (configCrawler.realEstateNeedRent / 20); i++) {
+                    crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_NEED_BUY.replace('{p}', i)), ch, conn);
+                }
+            }
+            
+            //NEWS
+            if (configCrawler.news) {
+                CRAWLER_CONFIG.NEWS.forEach(function (item) {
+                    for (var i = 1; i < (configCrawler.news / CRAWLER_CONFIG.NEWS.length / 14); i++) {
+                        crawlerNews.crawlerNewsListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
+                    }
+                });
+            }
+            
+            //PROJECT
+            if (configCrawler.project) {
+                CRAWLER_CONFIG.PROJECT.forEach(function (item) {
+                    for (var i = 1; i < (configCrawler.project / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
+                        crawlerProject.crawlerProjectListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
+                    }
+                });
+            }
             //conn.close(); //close connection
         });
     });
@@ -74,7 +93,21 @@ const crawlerRun = () => {
 module.exports = () => {
     const timeCron = '* * 0 * * *';
     // new CronJob(timeCron, function() {
-        logger.info(`CRON JOB RUN AT ${timeCron}`);
-        crawlerRun();
+    logger.info(`CRON JOB RUN AT ${timeCron}`);
+    
+    // const configCrawler = require('./apiService').getConfigCrawler();
+    
+    configCrawler = {
+        realEstateSale: 20,
+        realEstateRent: 20,
+        realEstateNeedBuy: 20,
+        realEstateNeedRent: 20,
+        news: 14,
+        project: 10
+    }
+    console.log(configCrawler);
+    
+    crawlerRun(configCrawler);
+    
     // }, null, true, 'Asia/Ho_Chi_Minh');
 }

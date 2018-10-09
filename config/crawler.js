@@ -19,14 +19,10 @@ global.MAX_PAGE = {
 
 global.CRAWLER_CONFIG = {
     SOURCE: 'https://batdongsan.com.vn',
-    POST_SALE: [
-        'nha-dat-ban/p{p}',
-        'nha-dat-cho-thue/p{p}',
-    ],
-    POST_BUY: [
-        'nha-dat-can-mua/p{p}',
-        'nha-dat-can-thue/p{p}',
-    ],
+    REAL_ESTATE_SALE: 'nha-dat-ban/p{p}',
+    REAL_ESTATE_RENT: 'nha-dat-cho-thue/p{p}',
+    REAL_ESTATE_NEED_BUY: 'nha-dat-can-mua/p{p}',
+    REAL_ESTATE_NEED_RENT: 'nha-dat-can-thue/p{p}',
     NEWS: [
         {id: 1, url: "tin-thi-truong/p{p}"},
         {id: 2, url: 'phan-tich-nhan-dinh/p{p}'},

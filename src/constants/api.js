@@ -1,4 +1,4 @@
-const API_HOST = 'http://159.89.202.248:3000/';
+const API_HOST = 'https://api.hecta.vn/';
 
 global.API = {
     captchaToken: 'captchaToken',
@@ -9,4 +9,5 @@ global.API = {
     postNews: API_HOST + 'admin/v1/news/add',
     postProject: API_HOST + 'admin/v1/projects/add',
     updateProject: API_HOST + 'admin/v1/projects/update/{id}',
+    getConfigCrawler: API_HOST + 'api/v1/system/statistic',
 }
