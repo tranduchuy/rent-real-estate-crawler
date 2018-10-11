@@ -88,7 +88,7 @@ const postBuy = function (par, ch, conn) {
             } else {
                 logger.info(`apiService::postBuy info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-    
+            
             if (body && body.data && body.data.content_id)
                 sendToQueue(body.data.content_id, ch, conn, POST_TYPE.BUY);
         });
@@ -119,7 +119,7 @@ const postNews = function (par, ch, conn) {
             }
             
             const bd = body;
-    
+            
             if (bd && bd.data && bd.data.content_id)
                 sendToQueue(bd.data.content_id, ch, conn, POST_TYPE.NEWS);
         });
@@ -148,28 +148,29 @@ const postProject = function (c, url, par, ch, conn) {
             } else {
                 logger.info(`apiService::postProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-    
+            
             const bd = body;
-    
-            if (bd && bd.data && bd.data.content_id){
-                sendToQueue(bd.data.content_id, ch, conn, POST_TYPE.PROJECT);
-    
-                const id = bd.data.content_id;
-    
+            
+            if (bd && bd.data && bd.data._id && bd.data.content_id) {
+                sendToQueue(bd.data._id, ch, conn, POST_TYPE.PROJECT);
+                
+                const id = bd.data._id;
+                const content_id = bd.data.content_id;
+                
                 if (params.isShowLocationAndDesign)
-                    require('./crawlerProject').crawlerTabLocationAndDesign(c, url, id, ch, conn);
+                    require('./crawlerProject').crawlerTabLocationAndDesign(c, url, id, content_id, ch, conn);
                 if (params.isShowGround)
-                    require('./crawlerProject').crawlerTabGround(c, url, id, ch, conn);
+                    require('./crawlerProject').crawlerTabGround(c, url, id, content_id, ch, conn);
                 if (params.isShowImageLibs)
-                    require('./crawlerProject').crawlerTabImageAlbums(c, url, id, ch, conn);
+                    require('./crawlerProject').crawlerTabImageAlbums(c, url, id, content_id, ch, conn);
                 if (params.isShowProjectProgress)
-                    require('./crawlerProject').crawlerTabProjectProgress(c, url, id, ch, conn);
+                    require('./crawlerProject').crawlerTabProjectProgress(c, url, id, content_id, ch, conn);
                 // if (params.isShowTabVideo)
                 // TODO
                 if (params.isShowFinancialSupport)
-                    require('./crawlerProject').crawlerTabFinancialSupport(c, url, id, ch, conn);
+                    require('./crawlerProject').crawlerTabFinancialSupport(c, url, id, content_id, ch, conn);
                 if (params.isShowInvestor)
-                    require('./crawlerProject').crawlerTabDetailInvestor(c, url, id, ch, conn);
+                    require('./crawlerProject').crawlerTabDetailInvestor(c, url, id, content_id, ch, conn);
             }
         });
     } catch (e) {
@@ -177,7 +178,7 @@ const postProject = function (c, url, par, ch, conn) {
     }
 };
 
-const updateProject = function (par, id, ch, conn) {
+const updateProject = function (par, id, content_id, ch, conn) {
     
     const params = par;
     
@@ -197,11 +198,7 @@ const updateProject = function (par, id, ch, conn) {
             } else {
                 logger.info(`apiService::updateProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
-    
-            const bd = body;
-    
-            if (bd && bd.data && bd.data._id)
-                sendToQueue(bd.data._id, ch, conn, POST_TYPE.PROJECT);
+            sendToQueue(content_id, ch, conn, POST_TYPE.PROJECT);
         });
     } catch (e) {
         logger.error(`apiService::updateProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);

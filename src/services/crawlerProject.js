@@ -164,7 +164,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
     }
 };
 
-const crawlerTabLocationAndDesign = function (c, url, id, ch, conn) {
+const crawlerTabLocationAndDesign = function (c, url, id, content_id, ch, conn) {
     try {
         
         c.queue([{
@@ -204,7 +204,7 @@ const crawlerTabLocationAndDesign = function (c, url, id, ch, conn) {
                         :
                         params.infrastructure = infrastructure.html();
                     
-                    require('./apiService').updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, content_id, ch, conn);
                 }
                 done();
             }
@@ -215,7 +215,7 @@ const crawlerTabLocationAndDesign = function (c, url, id, ch, conn) {
     }
 }
 
-const crawlerTabGround = function (c, url, id, ch, conn) {
+const crawlerTabGround = function (c, url, id, content_id, ch, conn) {
     try {
         
         c.queue([{
@@ -258,7 +258,7 @@ const crawlerTabGround = function (c, url, id, ch, conn) {
                         :
                         params.groundImages = services.getlistGroundImagesProject(listGroundImages.html());
                     
-                    require('./apiService').updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, content_id, ch, conn);
                 }
                 done();
             }
@@ -269,7 +269,7 @@ const crawlerTabGround = function (c, url, id, ch, conn) {
     }
 };
 
-const crawlerTabImageAlbums = function (c, url, id, ch, conn) {
+const crawlerTabImageAlbums = function (c, url, id, content_id, ch, conn) {
     try {
         
         c.queue([{
@@ -302,7 +302,7 @@ const crawlerTabImageAlbums = function (c, url, id, ch, conn) {
                         :
                         params.imageAlbums = services.getlistImagesAlbumsProject(imageAlbums.html());
                     
-                    require('./apiService').updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, content_id, ch, conn);
                 }
                 done();
             }
@@ -313,7 +313,7 @@ const crawlerTabImageAlbums = function (c, url, id, ch, conn) {
     }
 };
 
-const crawlerTabProjectProgress = function (c, url, id, ch, conn) {
+const crawlerTabProjectProgress = function (c, url, id, content_id, ch, conn) {
     try {
         
         c.queue([{
@@ -362,7 +362,7 @@ const crawlerTabProjectProgress = function (c, url, id, ch, conn) {
                         :
                         params.projectProgressImages = services.getProgressImageProject(projectProgressImages.html());
                     
-                    require('./apiService').updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, content_id, ch, conn);
                 }
                 done();
             }
@@ -373,7 +373,7 @@ const crawlerTabProjectProgress = function (c, url, id, ch, conn) {
     }
 };
 
-const crawlerTabFinancialSupport = function (c, url, id, ch, conn) {
+const crawlerTabFinancialSupport = function (c, url, id, content_id, ch, conn) {
     try {
         
         c.queue([{
@@ -406,7 +406,7 @@ const crawlerTabFinancialSupport = function (c, url, id, ch, conn) {
                         :
                         params.financialSupport = financialSupport.html();
                     
-                    require('./apiService').updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, content_id, ch, conn);
                 }
                 done();
             }
@@ -417,7 +417,7 @@ const crawlerTabFinancialSupport = function (c, url, id, ch, conn) {
     }
 };
 
-const crawlerTabDetailInvestor = function (c, url, id, ch, conn) {
+const crawlerTabDetailInvestor = function (c, url, id, content_id, ch, conn) {
     try {
         
         c.queue([{
@@ -450,7 +450,7 @@ const crawlerTabDetailInvestor = function (c, url, id, ch, conn) {
                         :
                         params.detailInvestor = detailInvestor.html();
                     
-                    require('./apiService').updateProject(params, id, ch, conn);
+                    require('./apiService').updateProject(params, id, content_id, ch, conn);
                 }
                 done();
             }
