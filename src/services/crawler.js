@@ -44,28 +44,28 @@ const crawlerRun = (configCrawler) => {
             ch.assertQueue(RABBIT_MQ.q, {durable: true});
             
             //Post SALE
-            // if (configCrawler.realEstateSale) {
-            //     for (var i = 1; i <= (configCrawler.realEstateSale / 20); i++) {
-            //         crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_SALE.replace('{p}', i)), ch, conn);
-            //     }
-            // }
-            // if (configCrawler.realEstateRent) {
-            //     for (var i = 1; i <= (configCrawler.realEstateRent / 20); i++) {
-            //         crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_RENT.replace('{p}', i)), ch, conn);
-            //     }
-            // }
-            //
-            // //Post Buy
-            // if (configCrawler.realEstateNeedBuy) {
-            //     for (var i = 1; i <= (configCrawler.realEstateNeedBuy / 20); i++) {
-            //         crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_NEED_BUY.replace('{p}', i)), ch, conn);
-            //     }
-            // }
-            // if (configCrawler.realEstateNeedRent) {
-            //     for (var i = 1; i <= (configCrawler.realEstateNeedRent / 20); i++) {
-            //         crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_NEED_BUY.replace('{p}', i)), ch, conn);
-            //     }
-            // }
+            if (configCrawler.realEstateSale) {
+                for (var i = 1; i <= (configCrawler.realEstateSale / 20); i++) {
+                    crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_SALE.replace('{p}', i)), ch, conn);
+                }
+            }
+            if (configCrawler.realEstateRent) {
+                for (var i = 1; i <= (configCrawler.realEstateRent / 20); i++) {
+                    crawlerPostSale.crawlerPostSaleListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_RENT.replace('{p}', i)), ch, conn);
+                }
+            }
+
+            //Post Buy
+            if (configCrawler.realEstateNeedBuy) {
+                for (var i = 1; i <= (configCrawler.realEstateNeedBuy / 20); i++) {
+                    crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_NEED_BUY.replace('{p}', i)), ch, conn);
+                }
+            }
+            if (configCrawler.realEstateNeedRent) {
+                for (var i = 1; i <= (configCrawler.realEstateNeedRent / 20); i++) {
+                    crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_NEED_BUY.replace('{p}', i)), ch, conn);
+                }
+            }
             
             //NEWS
             if (configCrawler.news) {
@@ -100,11 +100,11 @@ module.exports = () => {
     // const configCrawler = require('./apiService').getConfigCrawler();
     
     configCrawler = {
-        realEstateSale: 20,
-        realEstateRent: 20,
-        realEstateNeedBuy: 20,
-        realEstateNeedRent: 20,
-        news: 112,
+        realEstateSale: 1, //20,
+        realEstateRent: 1, //20,
+        realEstateNeedBuy: 1, //20,
+        realEstateNeedRent: 1, //20,
+        news: 1, //112,
         project: 100,
     }
     console.log(configCrawler);
