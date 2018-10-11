@@ -117,9 +117,11 @@ const postNews = function (par, ch, conn) {
             } else {
                 logger.info(`apiService::postNews info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
+            
+            const bd = body;
     
-            if (body && body.data && body.data.content_id)
-                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.NEWS);
+            if (bd && bd.data && bd.data.content_id)
+                sendToQueue(bd.data.content_id, ch, conn, POST_TYPE.NEWS);
         });
     } catch (e) {
         logger.error(`apiService::postNews error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
@@ -147,10 +149,12 @@ const postProject = function (c, url, par, ch, conn) {
                 logger.info(`apiService::postProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
-            if (body && body.data && body.data.content_id){
-                sendToQueue(body.data.content_id, ch, conn, POST_TYPE.PROJECT);
+            const bd = body;
     
-                const id = body.data._id;
+            if (bd && bd.data && bd.data.content_id){
+                sendToQueue(bd.data.content_id, ch, conn, POST_TYPE.PROJECT);
+    
+                const id = bd.data.content_id;
     
                 if (params.isShowLocationAndDesign)
                     require('./crawlerProject').crawlerTabLocationAndDesign(c, url, id, ch, conn);
@@ -194,8 +198,10 @@ const updateProject = function (par, id, ch, conn) {
                 logger.info(`apiService::updateProject info  ${JSON.stringify(option)}. Body: ${JSON.stringify(body)}`);
             }
     
-            if (body && body.data && body.data._id)
-                sendToQueue(body.data._id, ch, conn, POST_TYPE.PROJECT);
+            const bd = body;
+    
+            if (bd && bd.data && bd.data._id)
+                sendToQueue(bd.data._id, ch, conn, POST_TYPE.PROJECT);
         });
     } catch (e) {
         logger.error(`apiService::updateProject error: ${JSON.stringify(e)}. Params: ${JSON.stringify(option)}`);
