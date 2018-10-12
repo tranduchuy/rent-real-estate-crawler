@@ -113,7 +113,7 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         receiveMail: null,
                         
                         // priority: null,
-                        priorityId: null,
+                        priorityId: "5b865c8517519e8a39bfa953",
                         from: null,
                         to: null,
                         
@@ -165,11 +165,11 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         :
                         services.getContactPostSale(contact.html(), params);
                     
-                    const priority = $(SELECTOR.POST_SALE.priority);
-                    (priority.html() === null) ?
-                        logger.error('CRAWLER POST SALE DETAIL CALLBACK GET --PRIORITY-- FAIL')
-                        :
-                        services.getPriorityPostSale(priority.text(), params);
+                    // const priority = $(SELECTOR.POST_SALE.priority);
+                    // (priority.html() === null) ?
+                    //     logger.error('CRAWLER POST SALE DETAIL CALLBACK GET --PRIORITY-- FAIL')
+                    //     :
+                    //     services.getPriorityPostSale(priority.text(), params);
                     
                     const from = $(SELECTOR.POST_SALE.from);
                     (from.html() === null) ?
