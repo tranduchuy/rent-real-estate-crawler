@@ -110,6 +110,12 @@ const crawlerNewsDetail = function (c, url, cate, image, ch, conn) {
                         logger.error('CRAWLER NEWS DETAIL CALLBACK GET --CONTENT-- FAIL')
                         :
                         params.content = content.html();
+                    
+                    const soucenews = $(SELECTOR.NEWS.soucenews);
+                    (soucenews.html() === null) ?
+                        logger.error('CRAWLER NEWS DETAIL CALLBACK GET --SOURCE_NEWS-- FAIL')
+                        :
+                        params.content += soucenews.html();
     
                     apiService.postNews(params, ch, conn);
                 }

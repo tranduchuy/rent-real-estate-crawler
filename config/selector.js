@@ -64,6 +64,7 @@ global.SELECTOR = {
         title:'#ctl23_ctl00_divArticleTitle',
         description: '#ctl23_ctl00_divSummary',
         content: '#divContents',
+        soucenews: 'div.soucenews',
     },
     
     PROJECT: {
