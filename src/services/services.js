@@ -344,15 +344,18 @@ const services = {
         console.log('bannerContext 1', bannerContext);
         bannerContext = bannerContext.replace('//<![CDATA[', '').replace('__bannerContext =', '').replace(';//]]>', '').trim();
         console.log('bannerContext 2', bannerContext);
+        try {
+            const bannerContextParser = JSON.parse(bannerContext);
+            console.log('bannerContextParser', bannerContextParser);
     
-        const bannerContextParser = JSON.parse(bannerContext);
-    
-        console.log('bannerContextParser', bannerContextParser);
-        
-        bannerContextParser.cityCode ? params.city = bannerContextParser.cityCode : params.city = null;
-        bannerContextParser.districtId ? params.district =  parseInt(bannerContextParser.districtId) : params.district = null;
+            bannerContextParser.cityCode ? params.city = bannerContextParser.cityCode : params.city = null;
+            bannerContextParser.districtId ? params.district =
+                parseInt(bannerContextParser.districtId) : params.district = null;
+        }
+        catch (e) {
+            logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --FUNCTION getBannerContext-- FAIL', e.toString());
+        }
     }
-    
 }
 
 module.exports = services;
