@@ -139,6 +139,10 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                         :
                         params.district = parseInt(district.attr('value'));
                     
+                    console.log(city);
+                    console.log(district);
+                    return;
+                    
                     const title = $(SELECTOR.PROJECT.title);
                     (title.html() === null) ?
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --TITLE-- FAIL')
