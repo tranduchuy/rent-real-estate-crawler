@@ -77,6 +77,10 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                     const $ = cheerio.load(res.body);
                     
                     var params = {
+                        
+                        city: null, //cityCode String
+                        district: null, //districtId Int
+                        
                         isShowOverview: null, //boolean // show tab tổng quan
                         type: null, //number // loại dự án, loại hình phát triển
                         introImages: [], //string[] // list link hình
@@ -122,6 +126,18 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                     
                     params.isShowOverview = true;
                     params.type = type;
+                    
+                    const city = $(SELECTOR.PROJECT.city);
+                    (city.html() === null) ?
+                        logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --CITY CODE-- FAIL')
+                        :
+                        params.city = city.attr('value');
+                    
+                    const district = $(SELECTOR.PROJECT.district);
+                    (district.html() === null) ?
+                        logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --DISTRICT ID-- FAIL')
+                        :
+                        params.district = parseInt(district.attr('value'));
                     
                     const title = $(SELECTOR.PROJECT.title);
                     (title.html() === null) ?

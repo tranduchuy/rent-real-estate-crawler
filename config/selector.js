@@ -72,6 +72,8 @@ global.SELECTOR = {
         hrefItem: 'a',
         //detail
         introImages: '#imgslide',
+        city: '#hdCity',
+        district: '#hdDistrict',
         title: '#form1 > div.site-center > div.prj-detail > h1', //string // tên dự án
         divOverview: 'div.prj-right',
         divOverviewRow: 'div.prj-i',
