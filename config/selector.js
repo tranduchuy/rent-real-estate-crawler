@@ -72,7 +72,7 @@ global.SELECTOR = {
         hrefItem: 'a',
         //detail
         introImages: '#imgslide',
-        city: '#divCity',
+        city: '#form1 > script:nth-child(2)',
         district: '#divDistrict',
         title: '#form1 > div.site-center > div.prj-detail > h1', //string // tên dự án
         divOverview: 'div.prj-right',

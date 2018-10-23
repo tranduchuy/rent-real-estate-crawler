@@ -130,6 +130,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                     const city = $(SELECTOR.PROJECT.city);
                     
                     console.log(city.html());
+                    return;
                     // console.log(city.attr('value'));
                     
                     (city.html() === null) ?
