@@ -130,7 +130,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                     const city = $(SELECTOR.PROJECT.city);
                     
                     console.log(city.html());
-                    console.log(city.attr('value'));
+                    // console.log(city.attr('value'));
                     
                     (city.html() === null) ?
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --CITY CODE-- FAIL')
@@ -140,7 +140,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                     const district = $(SELECTOR.PROJECT.district);
     
                     console.log(district.html());
-                    console.log(district.attr('value'));
+                    // console.log(district.attr('value'));
                     
                     (district.html() === null) ?
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --DISTRICT ID-- FAIL')
