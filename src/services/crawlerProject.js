@@ -133,8 +133,6 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                         :
                         services.getBannerContext(bannerContext.html(), params);
                     
-                    return;
-                    
                     const title = $(SELECTOR.PROJECT.title);
                     (title.html() === null) ?
                         logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --TITLE-- FAIL')
