@@ -127,26 +127,11 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                     params.isShowOverview = true;
                     params.type = type;
                     
-                    const city = $(SELECTOR.PROJECT.city);
-                    
-                    console.log(city.html());
-                    return;
-                    // console.log(city.attr('value'));
-                    
-                    (city.html() === null) ?
-                        logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --CITY CODE-- FAIL')
+                    const bannerContext = $(SELECTOR.PROJECT.bannerContext);
+                    (bannerContext.html() === null) ?
+                        logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --BANNER CONTEXT-- FAIL')
                         :
-                        params.city = city.attr('value');
-                    
-                    const district = $(SELECTOR.PROJECT.district);
-    
-                    console.log(district.html());
-                    // console.log(district.attr('value'));
-                    
-                    (district.html() === null) ?
-                        logger.error('CRAWLER PROJECT DETAIL CALLBACK GET --DISTRICT ID-- FAIL')
-                        :
-                        params.district = parseInt(district.attr('value'));
+                        services.getBannerContext(bannerContext.html(), params);
                     
                     return;
                     
