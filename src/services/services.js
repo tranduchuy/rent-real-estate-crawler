@@ -342,7 +342,7 @@ const services = {
     
     getBannerContext (bannerContext, params){
         console.log('bannerContext 1', bannerContext);
-        bannerContext = bannerContext.replace('//<![CDATA[', '').replace('__bannerContext =', '').replace('//]]>', '').trim();
+        bannerContext = bannerContext.replace('//<![CDATA[', '').replace('__bannerContext =', '').replace(';//]]>', '').trim();
         console.log('bannerContext 2', bannerContext);
     
         const bannerContextParser = JSON.parse(bannerContext);
