@@ -94,6 +94,9 @@ const crawlerRun = (configCrawler) => {
 
 module.exports = () => {
     const timeCron = '* * 0 * * *';
+    
+    logger.info(`CONFIG CRON JOB RUN AT ---${timeCron}---`);
+    
     new CronJob(timeCron, function () {
         logger.info(`CRON JOB RUN AT ${timeCron}`);
         
