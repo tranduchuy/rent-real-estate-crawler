@@ -42,7 +42,7 @@ const crawlerRun = (configCrawler) => {
     amqp.connect(getConnectStr(), function (err, conn) {
         conn.createChannel(function (err, ch) {
             ch.assertQueue(RABBIT_MQ.q, {durable: true});
-
+            
             //Post Buy
             if (configCrawler.realEstateNeedBuy) {
                 for (var i = 1; i <= (configCrawler.realEstateNeedBuy / 20); i++) {
@@ -54,7 +54,7 @@ const crawlerRun = (configCrawler) => {
                     crawlerPostBuy.crawlerPostBuyListItem(c, services.getFullUrl(CRAWLER_CONFIG.REAL_ESTATE_NEED_BUY.replace('{p}', i)), ch, conn);
                 }
             }
-    
+            
             //Post SALE
             if (configCrawler.realEstateRent) {
                 for (var i = 1; i <= (configCrawler.realEstateRent / 20); i++) {
@@ -94,22 +94,22 @@ const crawlerRun = (configCrawler) => {
 
 module.exports = () => {
     const timeCron = '* * 0 * * *';
-    // new CronJob(timeCron, function() {
-    logger.info(`CRON JOB RUN AT ${timeCron}`);
-    
-    // const configCrawler = require('./apiService').getConfigCrawler();
-    
-    configCrawler = {
-        realEstateSale: 20,
-        realEstateRent: 20,
-        realEstateNeedBuy: 20,
-        realEstateNeedRent: 20,
-        news: 112,
-        project: 100,
-    }
-    console.log(configCrawler);
-    
-    crawlerRun(configCrawler);
-    
-    // }, null, true, 'Asia/Ho_Chi_Minh');
+    new CronJob(timeCron, function () {
+        logger.info(`CRON JOB RUN AT ${timeCron}`);
+        
+        // const configCrawler = require('./apiService').getConfigCrawler();
+        
+        configCrawler = {
+            realEstateSale: 20,
+            realEstateRent: 20,
+            realEstateNeedBuy: 20,
+            realEstateNeedRent: 20,
+            news: 112,
+            project: 100,
+        }
+        console.log(configCrawler);
+        
+        crawlerRun(configCrawler);
+        
+    }, null, true, 'Asia/Ho_Chi_Minh');
 }

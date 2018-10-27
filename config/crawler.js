@@ -25,8 +25,8 @@ global.CRAWLER_CONFIG = {
     REAL_ESTATE_NEED_RENT: 'nha-dat-can-thue/p{p}',
     NEWS: [
         {id: 8, url: 'loi-khuyen/p{p}'},
-        {id: 7, url: 'tu-van-luat/p{p}'},
-        {id: 6, url: 'tai-chinh-chung-khoan-bds/p{p}'},
+        {id: 7, url: 'tu-van-luat-bat-dong-san/p{p}'},
+        {id: 6, url: 'tai-chinh-chung-khoan-bat-dong-san/p{p}'},
         {id: 5, url: 'bat-dong-san-the-gioi/p{p}'},
         {id: 4, url: 'thong-tin-quy-hoach/p{p}'},
         {id: 3, url: 'chinh-sach-quan-ly/p{p}'},
