@@ -4,6 +4,8 @@ var url = require('url');
 const cheerio = require('cheerio');
 require('../../config/globalConstant');
 var HelperService = require('./helper.service');
+const selector = require('../constants/selector');
+const CityList = require('../constants/cities.json');
 
 const services = {
     getFullUrl: function (url) {
@@ -212,12 +214,50 @@ const services = {
         params.ward = queryData.wardId ? parseInt(queryData.wardId) : null;
         params.street = queryData.streetId ? parseInt(queryData.streetId) : null;
         params.project = queryData.projId ? parseInt(queryData.projId) : null;
+        
+        if (params.project != null) params.project = this.getProjectByParams(params);
+        
+        
         // params.area = queryData.area ? parseInt(queryData.area) : null;
         // params.price = queryData.price ? parseInt(queryData.price) : null;
         // params.direction = queryData.direction ? parseInt(queryData.direction) : null;
         // params.bedroomCount = queryData.room ? parseInt(queryData.room) : null;
         
         return params;
+    },
+    
+    getProjectByParams (params) {
+        if (!params.city || !params.district) return null;
+        
+        const city = this.getCityByCode(params.city);
+        if (!city) return null;
+        
+        const district = this.getDistrictByValue(city, params.district);
+        if (!district) return null;
+        
+        const project = this.getProjectById(district, params.project);
+        if (!project) return null;
+        else
+            return project._id;
+        
+    },
+    
+    getCityByCode (cd) {
+        return CityList.find(city => {
+            return city.code === cd;
+        });
+    },
+    
+    getDistrictByValue (city, value) {
+        return city.district.find(d => {
+            return d.id === value;
+        });
+    },
+    
+    getProjectById (district, value) {
+        return district.project.find(w => {
+            return w.id.toString() === value;
+        });
     },
     
     getValueDivRight(right) {

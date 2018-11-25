@@ -88,10 +88,8 @@ const crawlerPostBuyDetail = function (c, url, ch, conn) {
                         ward: null, //Number,
                         street: null, //Number,
                         project: null, //String,
-                        areaMin: null, //Number,
-                        areaMax: null, //Number,
-                        priceMin: null, //Number,
-                        priceMax: null, //Number,
+                        area: null, //Number,
+                        price: null, //Number,
                         unit: null, //Number,
     
                         address: null, //String,
@@ -124,11 +122,11 @@ const crawlerPostBuyDetail = function (c, url, ch, conn) {
                         :
                         params.title = title.text().trim();
                     
-                    const area = $(SELECTOR.POST_BUY.area);
-                    (area.html() === null) ?
-                        logger.error('CRAWLER POST BUY DETAIL CALLBACK GET --AREA-- FAIL')
-                        :
-                        services.getAreaPostBuy(area.text(), params);
+                    // const area = $(SELECTOR.POST_BUY.area);
+                    // (area.html() === null) ?
+                    //     logger.error('CRAWLER POST BUY DETAIL CALLBACK GET --AREA-- FAIL')
+                    //     :
+                    //     services.getAreaPostBuy(area.text(), params);
                     
                     const description = $(SELECTOR.POST_BUY.description);
                     (description.html() === null) ?
