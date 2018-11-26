@@ -104,9 +104,9 @@ module.exports = () => {
         
         configCrawler = {
             realEstateSale: 20,
-            realEstateRent: 20,
-            realEstateNeedBuy: 20,
-            realEstateNeedRent: 20,
+            realEstateRent: 0,
+            realEstateNeedBuy: 0,
+            realEstateNeedRent: 0,
             news: 112,
             project: 100,
         }
