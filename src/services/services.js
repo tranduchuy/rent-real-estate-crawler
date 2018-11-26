@@ -255,9 +255,8 @@ const services = {
     },
     
     getProjectById (district, value) {
-        console.log(district, value);
         return district.project.find(w => {
-            return w.id.toString() === value;
+            return w.id === value;
         });
     },
     
