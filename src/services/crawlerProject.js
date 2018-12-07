@@ -126,6 +126,7 @@ const crawlerProjectDetail = function (c, url, type, ch, conn) {
                     
                     params.isShowOverview = true;
                     params.type = type;
+                    params.status = STATUS.ACTIVE;
                     
                     const bannerContext = $(SELECTOR.PROJECT.bannerContext);
                     (bannerContext.html() === null) ?

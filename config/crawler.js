@@ -6,6 +6,12 @@ global.POST_TYPE = {
     createdByTypeCraw: 2
 };
 
+global.STATUS = {
+    ACTIVE: 1,
+    PENDING_OR_WAIT_COMFIRM: 2,
+    BLOCKED: 3,
+    DELETE: 4,
+}
 global.RABBIT_MQ = {
     q: 'RESIZE_IMAGES_FOR_CRAWLER2',
 }

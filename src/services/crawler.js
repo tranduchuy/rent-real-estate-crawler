@@ -103,12 +103,12 @@ module.exports = () => {
         // const configCrawler = require('./apiService').getConfigCrawler();
         
         configCrawler = {
-            realEstateSale: 20,
-            realEstateRent: 20,
-            realEstateNeedBuy: 20,
-            realEstateNeedRent: 20,
+            realEstateSale: 100,
+            realEstateRent: 100,
+            realEstateNeedBuy: 100,
+            realEstateNeedRent: 100,
             news: 112,
-            project: 100,
+            project: 300,
         }
         console.log(configCrawler);
         
