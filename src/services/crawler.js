@@ -84,7 +84,7 @@ const crawlerRun = (configCrawler) => {
                     // for (var i = 1; i <= (configCrawler.project / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
                     //     crawlerProject.crawlerProjectListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
                     // }
-                    for (var i = 1; i <= (item.item / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
+                    for (var i = 1; i <= (item.item / 10); i++) {
                         crawlerProject.crawlerProjectListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
                     }
                 });
