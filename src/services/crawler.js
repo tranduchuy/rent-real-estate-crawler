@@ -81,7 +81,10 @@ const crawlerRun = (configCrawler) => {
             if (configCrawler.project) {
                 CRAWLER_CONFIG.PROJECT.forEach(function (item) {
                     console.log(item);
-                    for (var i = 1; i <= (configCrawler.project / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
+                    // for (var i = 1; i <= (configCrawler.project / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
+                    //     crawlerProject.crawlerProjectListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
+                    // }
+                    for (var i = 1; i <= (item.item / CRAWLER_CONFIG.PROJECT.length / 10); i++) {
                         crawlerProject.crawlerProjectListItem(c, services.getFullUrl(item.url.replace('{p}', i)), item.id, ch, conn);
                     }
                 });
@@ -107,8 +110,8 @@ module.exports = () => {
             realEstateRent: 0, //100,
             realEstateNeedBuy: 0, //100,
             realEstateNeedRent: 0, //100,
-            news: 112,
-            project: 0, //300,
+            news: 0, //112,
+            project: 4000,
         }
         console.log(configCrawler);
         
