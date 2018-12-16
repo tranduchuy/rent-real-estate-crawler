@@ -96,7 +96,7 @@ const crawlerRun = (configCrawler) => {
 };
 
 module.exports = () => {
-    const timeCron = '* * 0,12,15,18 * * *';
+    const timeCron = '* 0-23/2 * * *';
 
     logger.info(`CONFIG CRON JOB RUN AT ---${timeCron}---`);
     
@@ -106,12 +106,12 @@ module.exports = () => {
         // const configCrawler = require('./apiService').getConfigCrawler();
         
         configCrawler = {
-            realEstateSale: 0, //100,
-            realEstateRent: 0, //100,
-            realEstateNeedBuy: 0, //100,
-            realEstateNeedRent: 0, //100,
-            news: 0, //112,
-            project: 4000,
+            realEstateSale: 100,
+            realEstateRent: 100,
+            realEstateNeedBuy: 100,
+            realEstateNeedRent: 100,
+            news: 12,
+            project: 0, //4000,
         }
         console.log(configCrawler);
         
