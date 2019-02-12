@@ -2,7 +2,7 @@ const API_HOST = 'https://api.hecta.vn/';
 
 global.API = {
     captchaToken: 'captchaToken',
-    tokenUser: '83NCmXy8JEbJdE2DNelrwzAZpYXGhWRV10B8bT6epFzByb4NPq7iOlu62J1gG7zBcCWgF41yP1ra4rS3H0DWHaM2gfg94fGi1t4k1538051034145',
+    tokenUser: 'CdobeBaJgq9Ap3L8cNUxQqXEddNfgkXBrPn3e0hXKQUPMvSoa02SGkzgAPpS6NKuzozwKg28jFixuCHtWKPb6Lg6letQRjMapiLN1549954745048',
     tokenAdmin: 'hVxHG4EfKwnA74qK3d67wW454Abvy5TQGOs6aHbxE5f6vs1Y4SqqQWi70CxvZx1jy6wSazs3uNLYjUdUuOjoe6NHsnqPb7dAxcoy1538057473842',
     postSale: API_HOST + 'api/v1/sales/add',
     postBuy: API_HOST + 'api/v1/buys/add',
