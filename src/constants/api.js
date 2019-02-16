@@ -2,8 +2,8 @@ const API_HOST = 'https://api.hecta.vn/';
 
 global.API = {
     captchaToken: 'captchaToken',
-    tokenUser: 'CdobeBaJgq9Ap3L8cNUxQqXEddNfgkXBrPn3e0hXKQUPMvSoa02SGkzgAPpS6NKuzozwKg28jFixuCHtWKPb6Lg6letQRjMapiLN1549954745048',
-    tokenAdmin: 'hVxHG4EfKwnA74qK3d67wW454Abvy5TQGOs6aHbxE5f6vs1Y4SqqQWi70CxvZx1jy6wSazs3uNLYjUdUuOjoe6NHsnqPb7dAxcoy1538057473842',
+    tokenUser: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ndXllbmJpbmhsb25nOTJAZ21haWwuY29tIiwiaWF0IjoxNTUwMzA0ODEwLCJleHAiOjE1NTA0Nzc2MTB9.HvHv3MuH3T4Geym3fPUHRO_fVqocUUSUjoYjaiRUSx4',
+    tokenAdmin: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc3RlckBnbWFpbC5jb20iLCJpYXQiOjE1NTAzMDU3NjYsImV4cCI6MTU1MDQ3ODU2Nn0.j72m3v2ax5F_kInO_e4Ixp9UMA-iu_vXmfd6NzJAEaE',
     postSale: API_HOST + 'api/v1/sales/add',
     postBuy: API_HOST + 'api/v1/buys/add',
     postNews: API_HOST + 'admin/v1/news/add',
