@@ -110,7 +110,7 @@ module.exports = () => {
             realEstateRent: 0,
             realEstateNeedBuy: 0,
             realEstateNeedRent: 0,
-            news: 10,
+            news: 112,
             project: 0, //4000,
         }
         console.log(configCrawler);
