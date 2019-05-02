@@ -96,12 +96,12 @@ const crawlerRun = (configCrawler) => {
 };
 
 module.exports = () => {
-    const timeCron = '* 0-23/5 * * *';
-
-    logger.info(`CONFIG CRON JOB RUN AT ---${timeCron}---`);
+    // const timeCron = '* 0-23/5 * * *';
+    //
+    // logger.info(`CONFIG CRON JOB RUN AT ---${timeCron}---`);
     
-    new CronJob(timeCron, function () {
-        logger.info(`CRON JOB RUN AT ${timeCron}`);
+    // new CronJob(timeCron, function () {
+    //     logger.info(`CRON JOB RUN AT ${timeCron}`);
         
         // const configCrawler = require('./apiService').getConfigCrawler();
         
@@ -117,5 +117,5 @@ module.exports = () => {
         
         crawlerRun(configCrawler);
         
-    }, null, true, 'Asia/Ho_Chi_Minh');
+    // }, null, true, 'Asia/Ho_Chi_Minh');
 }
