@@ -96,18 +96,18 @@ const crawlerRun = (configCrawler) => {
 };
 
 module.exports = () => {
-    // const timeCron = '* 0-23/5 * * *';
-    //
-    // logger.info(`CONFIG CRON JOB RUN AT ---${timeCron}---`);
+    const timeCron = '* 0-23/3 * * *';
+
+    logger.info(`CONFIG CRON JOB RUN AT ---${timeCron}---`);
     
-    // new CronJob(timeCron, function () {
-    //     logger.info(`CRON JOB RUN AT ${timeCron}`);
+    new CronJob(timeCron, function () {
+        logger.info(`CRON JOB RUN AT ${timeCron}`);
         
         // const configCrawler = require('./apiService').getConfigCrawler();
         
         configCrawler = {
-            realEstateSale: 0,
-            realEstateRent: 0,
+            realEstateSale: 100,
+            realEstateRent: 100,
             realEstateNeedBuy: 0,
             realEstateNeedRent: 0,
             news: 112,
@@ -117,5 +117,5 @@ module.exports = () => {
         
         crawlerRun(configCrawler);
         
-    // }, null, true, 'Asia/Ho_Chi_Minh');
+    }, null, true, 'Asia/Ho_Chi_Minh');
 }
