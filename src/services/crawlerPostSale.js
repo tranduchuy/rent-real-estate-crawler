@@ -9,6 +9,7 @@ var config = require('config');
 var HelperService = require('./helper.service');
 const apiService = require('./apiService');
 require('../constants/api');
+const GlobalConstant = require('../constants/globalConstant');
 
 const crawlerPostSaleListItem = function (c, url, ch, conn) {
     try {
@@ -26,7 +27,7 @@ const crawlerPostSaleListItem = function (c, url, ch, conn) {
                 logger.info('CRAWLER POST SALE LIST ITEM CALLBACK STATUSCODE: ' + JSON.stringify(res.statusCode) + '. REQUEST.URI.HREF: ' + JSON.stringify(res.request.uri.href));
                 
                 if (error)
-                    logger.error('CRAWLER POST SALE LIST ITEM CALLBACK GET DOCUMENT FROM SOURCE ERROR' + JSON.stringify(error));
+                    logger.error('CRAWLER POST SALE LIST ITEM CALLBACK GET DOCUMENT FROM SOURCE ERROR', error);
                 
                 else {
                     const $ = cheerio.load(res.body);
@@ -113,7 +114,7 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         receiveMail: null,
                         
                         // priority: null,
-                        priorityId: "5b865c8517519e8a39bfa953",
+                        priority: 6,
                         from: null,
                         to: null,
                         
@@ -127,7 +128,10 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         :
                         services.getSearchBoxValueFromUrl(urlSearchBox.attr('href'), params);
                     
-                    const formality = HelperService.getFormilitySaleByValue(params.formality);
+                    let formality = HelperService.getFormilityBuyByValue(params.formality);
+                    if (!formality) {
+                        formality =  GlobalConstant.CateBuyList[1];
+                    }
                     
                     const title = $(SELECTOR.POST_SALE.title);
                     (title.html() === null) ?
@@ -194,9 +198,10 @@ const crawlerPostSaleDetail = function (c, url, ch, conn) {
                         logger.error('CRAWLER POST SALE DETAIL CALLBACK GET --IMAGES LIST-- FAIL')
                         :
                         params.images = services.getImageListPostSale(imageList.html());
+
+                    console.log('Rent params: ', JSON.stringify(params));
                     
                     apiService.postSale(params, ch, conn);
-                    
                 }
                 done();
             }

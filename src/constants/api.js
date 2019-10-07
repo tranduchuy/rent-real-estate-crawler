@@ -1,9 +1,10 @@
-const API_HOST = 'https://api.hecta.vn/';
+const config = require('config');
+const API_HOST = config.get('apiHost');
 
 global.API = {
     captchaToken: 'captchaToken',
-    tokenUser: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ndXllbmJpbmhsb25nOTJAZ21haWwuY29tIiwiaWF0IjoxNTUwMzA0ODEwLCJleHAiOjE1NTA0Nzc2MTB9.HvHv3MuH3T4Geym3fPUHRO_fVqocUUSUjoYjaiRUSx4',
-    tokenAdmin: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFwcG5ldHdhbWFuYWdlckBnbWFpbC5jb20iLCJpYXQiOjE1NTY4MDU2MDcsImV4cCI6MTU1Njk3ODQwN30.VBlJYjSgaflbIgtdKVo2Bibp6861j8DWYERHgGhNigQ',
+    tokenUser: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjAzOTQ0NTQ3OTMiLCJpYXQiOjE1NzA0NTM3NTQsImV4cCI6MTU3MDYyNjU1NH0.reQvjHi7ModzHt3-x50rJwcKekpHGDGXTgyugrY5M18',
+    tokenAdmin: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHRodWViYXRkb25nc2FuLmNvbS52biIsImlhdCI6MTU2NTY0OTg2MCwiZXhwIjoxNTY1ODIyNjYwfQ.cjxw1ZusnrxVRhsDbQlMsul8dGwocx2vA45ZUuLxzEc',
     postSale: API_HOST + 'api/v1/sales/add',
     postBuy: API_HOST + 'api/v1/buys/add',
     postNews: API_HOST + 'admin/v1/news/add',

@@ -9,10 +9,10 @@ var config = require('config');
 var HelperService = require('./helper.service');
 const apiService = require('./apiService');
 
-const crawlerNewsListItem = function (c, url, cate, ch, conn) {
+const crawlerNewsListItem = function (crawler, url, cate, ch, conn) {
     try {
         
-        c.queue([{
+        crawler.queue([{
             uri: url,
             jQuery: CRAWLER_CONFIG.jQuery,
             retries: CRAWLER_CONFIG.retries,
@@ -29,7 +29,7 @@ const crawlerNewsListItem = function (c, url, cate, ch, conn) {
                 
                 else {
                     const $ = cheerio.load(res.body);
-                    const listProductItem = $(SELECTOR.NEWS.listProductItem);
+                    const listProductItem = $(SELECTOR.NEWS.listProductItem2);
                     if (listProductItem.html() === null)
                         logger.error('CRAWLER NEWS LIST ITEM CALLBACK NULL');
                     else {
@@ -39,8 +39,7 @@ const crawlerNewsListItem = function (c, url, cate, ch, conn) {
                                 logger.error('CRAWLER NEWS LIST ITEM CALLBACK HREF ITEM NULL');
                             else {
                                 let image = $(SELECTOR.NEWS.image, element).attr('src');
-                                
-                                crawlerNewsDetail(c, services.getFullUrl(hrefItem), cate, image, ch, conn);
+                                crawlerNewsDetail(crawler, `https://dothi.net${hrefItem}`, cate, image, ch, conn);
                             }
                         });
                     }

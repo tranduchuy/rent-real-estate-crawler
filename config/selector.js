@@ -1,6 +1,6 @@
 global.SELECTOR = {
     POST_SALE: {
-        listProductItem: 'div .search-productItem',
+        listProductItem: '.search-productItem',
         hrefItem: 'h3 a',
         //detail
         urlSearchBox: '.get-bds-link #emailregister',
@@ -58,13 +58,14 @@ global.SELECTOR = {
     
     NEWS: {
         listProductItem: 'div.tintuc-row1.tintuc-list.tc-tit',
-        hrefItem: 'h3 a.link_blue',
-        image: 'img',
+        listProductItem2: 'div.news-list li',
+        hrefItem: '.litext a',
+        image: '.liimg img',
         //detail
-        title:'#ctl23_ctl00_divArticleTitle',
-        description: '#ctl23_ctl00_divSummary',
-        content: '#divContents',
-        soucenews: 'div.soucenews',
+        title:'.news-detail>h1',
+        description: '.news-detail>h2',
+        content: '.news-detail .nd-content',
+        soucenews: '.nd-source',
     },
     
     PROJECT: {

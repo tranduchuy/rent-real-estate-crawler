@@ -67,7 +67,7 @@ const HelperService = {
     
     getFormilityBuyByValue: function (value) {
         return CateBuyList.find(c => {
-            return c.id === value;
+            return c.id.toString() === (value || '').toString();
         });
     },
     
@@ -82,6 +82,11 @@ const HelperService = {
     },
     
     getUnitByValue: function (formality, value) {
+
+        if (this.isUndefinedOrNull(formality)) {
+            return {id: -1}; // thỏa thuận
+        }
+
         if (this.isUndefinedOrNull(value)) {
             return null;
         }

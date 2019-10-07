@@ -97,10 +97,7 @@ const postBuy = function (par, ch, conn) {
     }
 };
 
-const postNews = function (par, ch, conn) {
-    
-    const params = par;
-    
+const postNews = function (params, ch, conn) {
     const option = {
         uri: API.postNews,
         json: params,

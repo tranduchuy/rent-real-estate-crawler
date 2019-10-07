@@ -3,7 +3,7 @@ mongo:
   username: admin
   password: abc1233VF8YLwUWjegMwyxzLv3bFu2
   port: 27017
-  databaseName: bds_v1
+  databaseName: bds_v1w
 
 app:
   port: 5000
@@ -11,7 +11,9 @@ app:
 timeInterval: 1 #in minutes
 
 rabbitmq:
-  host: localhost
+  host: 103.1.239.234
   port: 5672
-  username: admin
-  password: admin123
+  username: dev
+  password: brTUEaqEKwh5aYduaudg
+
+apiHost: http://api.thuebatdongsan.com.vn
